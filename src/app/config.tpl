@@ -1,0 +1,1 @@
+angular.module('<%= moduleName %>', []).constant('configData', <%= JSON.stringify(appConfig) %>);

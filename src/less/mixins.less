@@ -1,0 +1,22 @@
+/**
+ * Utilities
+ */
+.no-float { float: none !important; }
+.no-wrap { white-space: nowrap; }
+.text-trim { overflow: hidden; text-overflow: ellipsis; }
+
+.filter(@filter: grayscale(100%)) {
+    -webkit-filter: @filter;
+    -moz-filter: @filter;
+    -ms-filter: @filter;
+    -o-filter: @filter;
+    filter: @filter;
+}
+
+.transform(@transformation) {
+    -moz-transform:@transformation;
+    -webkit-transform:@transformation;
+    -o-transform:@transformation;
+    -ms-transform:@transformation;
+    transform:@transformation;
+}

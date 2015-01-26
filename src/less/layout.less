@@ -1,0 +1,83 @@
+
+// -- layout
+
+body {
+    background: @color-bg-body;
+}
+
+.site-wrapper {
+    .clearfix();
+    overflow-x: hidden;
+}
+
+.page-container {
+    .clearfix();
+    padding: 1rem;
+    background-color: @color-bg-page-container;
+    border: 1px solid @color-border-low;
+    border-top-color: @color-border-high;
+    border-left-color: @color-border-high;
+}
+
+@media (max-width: @screen-sm-max) {
+    .container {
+        padding: 0;
+        margin: 0 1rem;
+    }
+    .site-main {
+        padding: 0 0 1rem;
+    }
+    .page-container {
+        margin-top: 1rem;
+    }
+}
+
+@media (min-width: @screen-xs) {
+    body {
+        background-color: @color-bg-body;
+    }
+    .page-container {
+        border: none;
+        background-color: fade(@color-bg-page-container, 75);
+        .box-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+    }
+}
+
+@media (min-width: @screen-sm) {
+    .container {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .site-main {
+        padding: 0 0 1.5rem;
+    }
+    .page-container {
+        margin-top: 1.5rem;
+    }
+}
+
+@media (min-width: @screen-md) {
+    .container {
+        margin: 0 auto;
+    }
+    .site-main {
+        padding: 0 0 2rem;
+    }
+    .page-container {
+        margin-top: 2rem;
+    }
+}
+
+@media (min-width: @screen-lg) {
+    .container {
+        max-width: 1320px;
+        margin: 0 auto;
+    }
+    .site-main {
+        padding: 0 0 3rem;
+    }
+    .page-container {
+        margin-top: 3rem;
+    }
+}
+

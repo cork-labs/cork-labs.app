@@ -1,0 +1,163 @@
+
+@screen-nano-max:              (@screen-xs-min - 1);
+
+// colors - main
+
+// -- green
+
+@primary-1: #9ABF50; // medium + saturation       HEADER TOP
+@primary-2: #8AA652; // medium - saturation
+@primary-3: #799C31; // dark
+@primary-4: #B1D36C; // light + saturation
+@primary-5: #B6D37B; // light - saturation
+
+// -- green saturated
+
+@secondary-a-1: #45A345; // medium + saturation
+@secondary-a-2: #478E47; // medium - saturation
+@secondary-a-3: #2A862A; // dark
+@secondary-a-4: #62C062; // light + saturation
+@secondary-a-5: #70C070; // light - saturation
+
+// -- yellow
+
+@secondary-b-1: #CCCC56; // medium + saturation
+@secondary-b-2: #B2B258; // medium - saturation
+@secondary-b-3: #A8A834; // dark
+@secondary-b-4: #DCDC71; // light + saturation
+@secondary-b-5: #DCDC81; // light - saturation
+
+// -- pink
+
+@complement-a-1: #A4457B; // medium + saturation     A:ACTIVE    ICON             HEADER-BOTTOM  USER-MENU
+@complement-a-2: #8F4770; // medium - saturation     A:VISITED
+@complement-a-3: #862A5E; // dark                    A                            HEADER MAIN
+@complement-a-4: #C16398; // light + saturation                  ICON:ACTIVE
+@complement-a-5: #C1719E; // light - saturation
+
+// purple
+
+@complement-b-3: #954ba7;
+
+
+// whites
+
+@color-bg-whitest: #FFFFFF;
+@color-bg-toned-white :#FFFCFC;
+@color-bg-whitesmoke: #F3F3F3;
+@color-bg-subwhitesmoke: #F3EFEF;
+
+@color-border-high: #eee;
+@color-border-low: #ddd;
+
+@color-fg-high-grey: #AAAAAA;
+@color-fg-grey: #999999;
+@color-fg-low-grey: #666666;
+
+@color-fg-blackish: #444444;
+@color-fg-black: #222222;
+@color-fg-blackest: #111111;
+
+
+// typography
+
+@ff-body: 'NoticiaText', Georgia, serif;
+@ff-brand: 'Varela', Helvetica, Arial, sans-serif;
+@ff-headers: 'Rambla', Helvetica, Arial, sans-serif;
+@ff-forms: 'Rambla', Helvetica, Arial, sans-serif;
+
+@color-fg-link: @complement-a-3;
+@color-fg-link-visited: @complement-a-2;
+@color-fg-link-active: @complement-a-1;
+
+@color-fg-link-negative: @color-bg-subwhitesmoke;
+@color-fg-link-negative-focus: lighten(@color-fg-link-negative, 20%);
+@color-fg-link-negative-active: lighten(@color-fg-link-negative, 20%);
+
+@color-bg-body: @color-bg-toned-white;
+@color-bg-page-container: @color-bg-whitest;
+
+// accessibility
+
+@shadow-outline1: 0 0 0 1px #fff;
+@shadow-outline2: 0 0 0 2px rgba(17, 26, 31, 0.5);
+
+.outlineshadow(@shadow) {
+    box-shadow: @shadow, @shadow-outline1, @shadow-outline2;
+}
+
+.outline() {
+    box-shadow: @shadow-outline1, @shadow-outline2;
+}
+
+
+// buttons
+
+@color-fg-button: @color-bg-subwhitesmoke;
+@color-bg-button: @complement-b-3;
+
+@color-bg-button-blue: @complement-a-3;
+
+@color-bg-button-red: @secondary-b-3;
+
+@color-bg-button-orange: @primary-1;
+
+// forms
+
+@color-fg-input: @color-fg-blackish;
+@color-fg-input-focus: @color-fg-black;
+@color-fg-input-placeholder: @color-fg-grey;
+
+@color-bg-input: rgba(red(@color-bg-toned-white), green(@color-bg-toned-white), blue(@color-bg-toned-white), 0.9);
+@color-bg-input-focus: @color-bg-whitest;
+
+@color-border-input: @complement-a-3;
+@color-border-input-focus: lighten(@complement-a-3, 10%);
+
+@color-fg-input-icon: @color-border-input;
+@color-fg-input-icon-focus: lighten(@color-border-input-focus, 10%);
+
+@color-fg-error: @secondary-b-1;
+
+@color-fg-input-error: @color-fg-error;
+@color-fg-input-error-focus: lighten(@color-fg-error, 10%);
+
+@color-border-input-error: @color-fg-input-error;
+@color-border-input-error-focus: @color-fg-input-error-focus;
+
+// -- layers
+
+@layer-pre-header: 100;
+@layer-header: 90;
+
+
+// -- layout
+
+@color-bg-header-main: @complement-a-3;
+@color-bg-header-top: @primary-1;
+@color-bg-header-bottom: @complement-a-1;
+
+@color-loader1: @secondary-a-4;
+@color-loader2: @secondary-a-1;
+@color-loader3: @secondary-b-1;
+@color-loader4: @secondary-b-3;
+
+@color-bg-user-menu: @complement-a-3;
+
+@color-bg-footer: @complement-a-3;
+
+@foter-height-xs: 2.66rem;
+@foter-height-sm: 4rem;
+@foter-height-md: 8rem;
+@foter-height-lg: 12rem;
+
+// -- header
+
+@header-border: 0.1rem;
+@header-border-xs-min: 0.15rem;
+@header-border-sm-min: 0.2rem;
+@header-border-md-min: 0.33rem;
+
+// -- user menu
+
+@color-border-menu-top: @complement-a-4;

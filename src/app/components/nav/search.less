@@ -1,0 +1,128 @@
+.nav-search {
+    display: inline-block;
+
+    .nav-item {
+        padding-left: 0;
+        padding-right: 0;
+        cursor: pointer;
+
+        // force line-height to be calculated with same font as links
+        &::before {
+            content: " ";
+        }
+    }
+
+    .icon {
+        width: 2.33rem;
+        text-align: center;
+    }
+
+    .search-terms {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0rem;
+        height: 0rem;
+        padding: 0rem;
+        overflow: hidden;
+        font-size: 1.4rem;
+        line-height: 1.4rem;
+        background-color: transparent;
+        border: none;
+        .transition(all 0.2s ease);
+
+        .form-control {
+            width: 100%;
+            padding: 0.2rem 0.4rem 0.1rem;
+            text-align: center;
+            border-bottom-style: solid;
+        }
+
+    }
+
+    &.expanded {
+
+        .nav-item {
+            border-bottom-color: @primary-1;
+        }
+
+        .search-terms {
+            padding: 0.5rem;
+            background-color: @color-bg-header-bottom;
+        }
+    }
+}
+
+// -- responsive
+
+@media (max-width: @screen-nano-max) {
+
+    .nav-search {
+
+        &.expanded {
+
+            .search-terms {
+                bottom: -2.5rem;
+                left: -3rem;
+                right: -1.66rem;
+                height: 2.4rem;
+                padding: 0.1rem 0.3rem 0.3rem;
+            }
+        }
+    }
+}
+
+@media (min-width: @screen-xs-min) {
+
+    .nav-search {
+
+        &.expanded {
+
+            .search-terms {
+                bottom: -2.8rem;
+                left: -3.66rem;
+                right: -3.66rem;
+                height: 2.6rem;
+                padding: 0.2rem 0.6rem 0.6rem;
+            }
+        }
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+
+    .nav-search {
+
+        &.expanded {
+
+            .search-terms {
+                bottom: -2.8rem;
+                left: -12rem;
+                right: -9.5rem;
+                height: 2.6rem;
+                padding: 0.2rem 0.6rem 0.6rem;
+            }
+        }
+    }
+}
+
+@media (min-width: @screen-md-min) {
+
+    .nav-search {
+
+        &.expanded {
+
+            .search-terms {
+                bottom: -3rem;
+                left: -19rem;
+                right: -9rem;
+                height: 2.7rem;
+            }
+        }
+    }
+}
+
+@media (min-width: @screen-lg-min) {
+
+    .nav-search {    }
+}

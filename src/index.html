@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html data-ng-app="app" data-ng-strict-di>
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="author" content="Cork Labs">
+        <meta name="description" content="">
+        <base href="/">
+
+        <title ng-bind="$route.current.title">Andrezero</title>
+
+        <% if (env.NODE_ENV !== 'development') { %><!-- fonts -->
+        <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+        <script>WebFont.load({ google: { families: [ 'Istok+Web::latin', 'Raleway:300:latin' ] } });</script>
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"><% } %>
+
+        <% if ('undefined' !== typeof cssFiles) { %><!-- compiled CSS --><% cssFiles.forEach( function ( file ) { %>
+        <link rel="stylesheet" type="text/css" href="/<%= file %>" /><% }); } %>
+
+        <style>
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak { display: none !important; }
+        </style>
+
+    </head>
+
+    <body class="home {{$route.current.section}} {{$route.current.className}}" data-ng-controller="appCtrl">
+        <div id="fb-root"></div>
+
+        <div class="site-wrapper">
+
+            <div class="site-pre-header"></div>
+
+            <header class="site-header">
+                <div class="container">
+                    <h1 class="site-title">
+                        <a href="/">
+                            <span class="title-logo-border"></span>
+                            <span class="title-logo"></span>
+                            <span class="title-text">Cork Labs</span>
+                        </a>
+                    </h1>
+                    <div class="nav-content">
+                        <a class="nav-item" href="/dev">dev</a>
+                        <a class="nav-item" href="/tooling">tooling</a>
+                        <a class="nav-item" href="/about">about</a>
+                        <div nav-search></div>
+                    </div>
+                    <hr>
+                </div>
+            </header>
+
+            <section class="site-main">
+
+                <div id="main-container" data-ng-view="main"></div>
+
+            </section>
+
+        </div>
+
+        <footer class="site-footer" role="contentinfo">
+            <hr/>
+            <div class="container">
+                <p>Cork Labs &copy; <%= grunt.template.today("yyyy") %></p>
+            </div>
+        </footer>
+
+        <!-- compiled JavaScript --><% jsFiles.forEach( function ( file ) { %>
+        <script type="text/javascript" charset="utf-8" src="/<%= file %>"></script><% }); %>
+        <script>
+        // load contents
+        </script>
+
+    </body>
+</html>

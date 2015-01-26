@@ -1,0 +1,27 @@
+{
+  "name": "cork-labs.app",
+  "version": "0.0.1",
+  "description": "Frontend code and tools for the http://cork-labs.org website.",
+  "authors": [
+    "Cork Labs <info@cork-labs.org> (http://cork-labs.org)"
+  ],
+  "license": "MIT",
+  "homepage": "http://cork-labs.org",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cork-labs/cork-labs.app.git"
+  },
+  "dependencies": {
+    "angular": "1.3.1",
+    "angular-route": "1.3.1",
+    "angular-cookies": "1.3.1",
+    "angular-moment": "~0.7.1",
+    "font-awesome-bower": "*",
+    "jquery": "1.10.2",
+    "ng-lodash": "~0.1.0",
+    "prismjs": "*"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.3.1"
+  }
+}

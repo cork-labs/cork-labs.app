@@ -1,0 +1,161 @@
+
+// -- header
+
+.site-pre-header {
+    position: fixed;
+    z-index: @layer-pre-header;
+    width: 100%;
+    border-top-style: solid;
+    border-top-color: @color-bg-header-top;
+}
+
+.site-header {
+
+    z-index: @layer-header;
+    width: 100%;
+    background-color: @color-bg-header-main;
+    border-bottom-style: solid;
+    border-bottom-color: @color-bg-header-bottom;
+    .clearfix();
+
+    .container {
+        position: relative;
+        .clearfix();
+    }
+
+    // -- title
+
+    .site-title {
+        float: left;
+        margin: 0 0 0 -0.7rem;
+        padding: 0.2rem 0; // make some space for the focus
+        font-family: @ff-brand;
+
+        a {
+            display: block;
+            overflow: hidden;
+            line-height: 1;
+            padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+        }
+
+        a, a:visited {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+        }
+        a:focus {
+            .outline();
+        }
+        a:focus, a:hover {
+            color: white;
+            .title-logo {
+                color: white;
+            }
+            .title-logo-border {
+                border-color: @color-bg-header-top;
+            }
+        }
+    }
+
+    .title-logo-border {
+        position: absolute;
+        display: block;
+        width: 2.5rem;
+        height: 2.5rem;
+        border: 0.2rem solid rgba(255, 255, 255, 0.85);
+        background: url(assets/images/logo-cork-375x375.png) no-repeat 0 0;
+        background-size: cover;
+    }
+
+    .title-logo {
+        display: block;
+        float: left;
+        width: 2.5rem;
+        height: 2.5rem;
+        line-height: 2.3rem;
+        text-align: center;
+    }
+
+    .title-text {
+        float: left;
+        padding-left: 0.5rem;
+        line-height: 2.2rem;
+        font-weight: normal;
+    }
+}
+
+// -- responsive
+
+.site-pre-header {
+    border-top-width: @header-border;
+}
+
+.site-header {
+
+    margin-top: @header-border;
+    border-bottom-width: @header-border;
+
+    .site-title {
+        font-size: 1.5rem;
+    }
+    .title-text {
+        display: none;
+    }
+}
+
+@media (min-width: @screen-xs-min) {
+
+    .site-pre-header {
+        border-top-width: @header-border-xs-min;
+    }
+
+    .site-header {
+
+        margin-top: @header-border-xs-min;
+        border-bottom-width: @header-border-xs-min;
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+
+    .site-pre-header {
+        border-top-width: @header-border-sm-min;
+    }
+
+    .site-header {
+
+        margin-top: @header-border-sm-min;
+        border-bottom-width: @header-border-sm-min;
+
+        .title-text {
+            display: inline-block;
+        }
+    }
+}
+
+@media (min-width: @screen-md-min) {
+
+    .site-pre-header {
+        border-top-width: @header-border-md-min;
+    }
+
+    .site-header {
+
+        margin-top: @header-border-md-min;
+        border-bottom-width: @header-border-md-min;
+
+        .site-title {
+            font-size: 2.33rem;
+        }
+
+        .title-logo-border {
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+
+        .title-logo {
+            width: 3.5rem;
+            height: 3.5rem;
+            line-height: 3.3rem;
+        }
+    }
+}

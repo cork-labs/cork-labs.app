@@ -1,0 +1,83 @@
+
+// -- typography
+
+html {
+    font-family: @ff-body;
+    font-size: 1em;
+    line-height: 1.75;
+    color: @color-fg-black;
+}
+h1,h2,h3,h4,h5,h6,hgroup,
+ul,ol,dd,
+p,figure,
+pre,table,fieldset,hr {
+    margin-bottom: 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: @ff-headers
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+}
+
+h1, h2 {
+    font-size: 2.25rem;
+
+}
+h1, h3, h5{
+    font-weight: bold;
+}
+h3, h4 {
+    font-size: 1.5rem;
+}
+ul {
+    padding-left: 1rem;
+}
+a {
+    color: @color-fg-link;
+}
+a:visited {
+    color: @color-fg-link-visited;
+}
+a:hover, a:active {
+    color: @color-fg-link-active;
+}
+
+
+@media (min-width: @screen-sm-max) {
+    html {
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: @screen-sm) {
+    html {
+        font-size: 1.2rem;
+    }
+}
+
+@media (min-width: @screen-md) {
+    html {
+        font-size: 1.3rem;
+    }
+}
+@media (min-width: @screen-lg) {
+    html {
+        font-size: 1.4rem;
+    }
+}
+
+.compact {
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 0.33rem;
+    }
+}
+
+.cutoff {
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 0rem;
+    }
+}
