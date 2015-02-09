@@ -21,6 +21,7 @@ npm-debug.log
 /docs/
 /tmp/
 /var/
+/logs/
 test-results.xml
 
 # certificates
