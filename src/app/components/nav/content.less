@@ -1,22 +1,35 @@
 .nav-content {
 
-    position: absolute;
+    float: right;
+    margin: 0 0 0 0.25em;
     color: rgba(255, 255, 255, 0.85);
     font-family: @ff-forms;
 
     .nav-item {
-        position: relative;
         display: inline-block;
-        padding: 0 0.3rem 0.3rem;
+        float: left;
+        height: 3em;
+        padding: 0 0.25em;
+        margin-right: 0.25em;
+        font-size: 0.4em;
         color: white;
         text-decoration: none;
         color: rgba(255, 255, 255, 0.85);
-        border-bottom: 0.3rem solid transparent;
-        .transition(border-color 0.5s ease);
+        border-bottom: @header-border-width solid transparent;
+        -webkit-transition: border-color 0.5s ease, border-width 0.5s ease;
+        transition: border-color 0.5s ease, border-width 0.5s ease;
 
         &:focus, &:hover {
-            border-bottom-color: @primary-1;
+            //border-bottom-color: @primary-1;
+            border-bottom-color: whitesmoke;
         };
+
+        &.active {
+            height: 3.3em;
+            color: white;
+            border-bottom-color: @color-bg-header-bottom;
+            border-bottom-width: 2.8em;
+        }
     }
 
     a:focus {
@@ -27,75 +40,24 @@
     }
 }
 
+
 // -- responsive
 
 @media (max-width: @screen-nano-max) {
 
-    .nav-content {
-
-        left: 3rem;
-        right: 1.33rem;
-        bottom: (-0.5 * @header-border);
-        line-height: 2.5rem;
-        font-size: 1.2rem;
-
-        .nav-item {
-            padding: 0 0.1rem 0.2rem;
-            border-bottom-width: (@header-border * 0.5);
-        }
+    .nav-content .nav-section {
+        display: none;
     }
 }
 
 @media (min-width: @screen-xs-min) {
-
-    .nav-content {
-
-        left: 3.33rem;
-        right: 3.33rem;
-        bottom: (-0.5 * @header-border-xs-min);
-        line-height: 2.5rem;
-        font-size: 1.5rem;
-
-        .nav-item {
-            border-bottom-width: (@header-border-xs-min * 0.5);
-        }
-    }
 }
 
 @media (min-width: @screen-sm-min) {
-
-    .nav-content {
-
-        left: 11.5rem;
-        right: 9rem;
-        bottom: (-0.5 * @header-border-sm-min);
-        line-height: 2.5rem;
-        font-size: 1.3rem;
-
-        .nav-item {
-            border-bottom-width: (@header-border-sm-min * 0.5);
-        }
-    }
 }
 
 @media (min-width: @screen-md-min) {
-
-    .nav-content {
-
-        left: 18rem;
-        right: 8rem;
-        bottom: (-0.5 * @header-border-md-min);
-        line-height: 3.5rem;
-        font-size: 1.5rem;
-
-        .nav-item {
-            padding-bottom: 0.2rem;
-            border-bottom-width: (@header-border-md-min * 0.5);
-        }
-    }
 }
 
 @media (min-width: @screen-lg-min) {
-    .nav-content {
-    }
 }

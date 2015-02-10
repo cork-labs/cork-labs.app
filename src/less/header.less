@@ -5,20 +5,21 @@
     position: fixed;
     z-index: @layer-pre-header;
     width: 100%;
-    border-top-style: solid;
-    border-top-color: @color-bg-header-top;
 }
 
 .site-header {
 
     z-index: @layer-header;
     width: 100%;
+    font-size: @header-base-size;
+    line-height: 1.5em;
     background-color: @color-bg-header-main;
-    border-bottom-style: solid;
-    border-bottom-color: @color-bg-header-bottom;
+    border-top: @header-border-width solid @color-bg-header-top;
+    border-bottom: @header-border-width solid @color-bg-header-bottom;
     .clearfix();
 
     .container {
+        height: 1.5em;
         position: relative;
         .clearfix();
     }
@@ -27,15 +28,13 @@
 
     .site-title {
         float: left;
-        margin: 0 0 0 -0.7rem;
-        padding: 0.2rem 0; // make some space for the focus
+        margin: 0.25em 0 0 0;
+        font-size: 1em;
         font-family: @ff-brand;
 
         a {
             display: block;
             overflow: hidden;
-            line-height: 1;
-            padding: 0.2rem 0.5rem 0.2rem 0.5rem;
         }
 
         a, a:visited {
@@ -50,112 +49,76 @@
             .title-logo {
                 color: white;
             }
-            .title-logo-border {
-                border-color: @color-bg-header-top;
-            }
         }
-    }
-
-    .title-logo-border {
-        position: absolute;
-        display: block;
-        width: 2.5rem;
-        height: 2.5rem;
-        border: 0.2rem solid rgba(255, 255, 255, 0.85);
-        background: url(assets/images/logo-cork-375x375.png) no-repeat 0 0;
-        background-size: cover;
     }
 
     .title-logo {
         display: block;
         float: left;
-        width: 2.5rem;
-        height: 2.5rem;
-        line-height: 2.3rem;
-        text-align: center;
+        width: 1em;
+        height: 1em;
+        border: 3px solid transparent; // solves background clipping
+        background: url(assets/images/cork-labs-320x320.png) no-repeat 0 0;
+        background-size: cover;
     }
 
     .title-text {
         float: left;
-        padding-left: 0.5rem;
-        line-height: 2.2rem;
+        padding-left: 0.25em;
+        line-height: 2em;
+        font-size: 0.5em;
         font-weight: normal;
     }
 }
 
 // -- responsive
 
-.site-pre-header {
-    border-top-width: @header-border;
-}
-
 .site-header {
 
-    margin-top: @header-border;
-    border-bottom-width: @header-border;
-
-    .site-title {
-        font-size: 1.5rem;
-    }
     .title-text {
         display: none;
     }
 }
 
+@media (max-width: @screen-nano-max) {
+}
+
 @media (min-width: @screen-xs-min) {
 
-    .site-pre-header {
-        border-top-width: @header-border-xs-min;
-    }
-
     .site-header {
+        font-size: @header-base-size-xs-min;
+        border-top-width: @header-border-width-xs-min;
+        border-bottom-width: @header-border-width-xs-min;
 
-        margin-top: @header-border-xs-min;
-        border-bottom-width: @header-border-xs-min;
+        .title-text {
+            display: initial;
+        }
     }
 }
 
 @media (min-width: @screen-sm-min) {
 
-    .site-pre-header {
-        border-top-width: @header-border-sm-min;
-    }
-
     .site-header {
-
-        margin-top: @header-border-sm-min;
-        border-bottom-width: @header-border-sm-min;
-
-        .title-text {
-            display: inline-block;
-        }
+        font-size: @header-base-size-sm-min;
+        border-top-width: @header-border-width-sm-min;
+        border-bottom-width: @header-border-width-sm-min;
     }
 }
 
 @media (min-width: @screen-md-min) {
 
-    .site-pre-header {
-        border-top-width: @header-border-md-min;
+    .site-header {
+        font-size: @header-base-size-md-min;
+        border-top-width: @header-border-width-md-min;
+        border-bottom-width: @header-border-width-md-min;
     }
+}
+
+@media (min-width: @screen-lg-min) {
 
     .site-header {
-
-        margin-top: @header-border-md-min;
-        border-bottom-width: @header-border-md-min;
-
-        .site-title {
-            font-size: 2.33rem;
-        }
-
-        .title-logo-border {
-            width: 3.5rem;
-            height: 3.5rem;
-        }
-
-        .title-logo {
-            width: 3.5rem;
-            height: 3.5rem;
-            line-height: 3.3rem;
-        }
+        font-size: @header-base-size-lg-min;
+        border-top-width: @header-border-width-lg-min;
+        border-bottom-width: @header-border-width-lg-min;
     }
 }
