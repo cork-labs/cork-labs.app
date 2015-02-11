@@ -91,9 +91,11 @@ module.exports = function (grunt) {
             // lib dependencies
             vendor_js: [
                 '<%= paths.vendor %>/angular/angular.js',
-                '<%= paths.vendor %>/ng-lodash/build/ng-lodash.js',
                 '<%= paths.vendor %>/angular-route/angular-route.js',
                 '<%= paths.vendor %>/angular-cookies/angular-cookies.js',
+                '<%= paths.vendor %>/ng.cl.router/dist/ng.cl.router.js',
+                '<%= paths.vendor %>/ng.cl.prevent-nav/dist/ng.cl.prevent-nav.js',
+                '<%= paths.vendor %>/ng.cx.config/dist/ng.cx.config.js'
             ],
 
             // test only dependencies (served by karma during tests)

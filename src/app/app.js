@@ -1,7 +1,7 @@
 angular.module('app', [
     'ngRoute',
     //
-    'az.config',
+    'ng.cx.config',
     // app
     'app.config',
     'app.services.content',
@@ -13,7 +13,7 @@ angular.module('app', [
 .config([
     '$routeProvider',
     '$locationProvider',
-    'azConfigProvider',
+    'cxConfigProvider',
     'configData',
     function appConfig(
         $routeProvider, $locationProvider,

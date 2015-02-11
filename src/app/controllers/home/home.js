@@ -1,20 +1,20 @@
 angular.module('app.controllers.home', [
     'ngRoute',
     // lib
-    'az.router',
+    'ng.cl.router',
     // app
     'app.controllers.home.route',
     'app.templates'
 ])
 
 .config([
-    'azRouterProvider',
+    'clRouterProvider',
     'APP_ROUTE_HOME',
     function config(routerProvider, ROUTE_HOME) {
         'use strict';
 
         routerProvider.addRoute(ROUTE_HOME.home, {
-            pattern: '/',
+            path: '/',
             templateUrl: 'controllers/home/home.tpl.html',
             controller: 'homeCtrl',
             title: 'Home'

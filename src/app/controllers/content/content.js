@@ -1,20 +1,20 @@
 angular.module('app.controllers.content', [
     'ngRoute',
     // lib
-    'az.router',
+    'ng.cl.router',
     // app
     'app.controllers.content.route',
     'app.templates'
 ])
 
 .config([
-    'azRouterProvider',
+    'clRouterProvider',
     'APP_ROUTE_CONTENT',
     function config(routerProvider, ROUTE_CONTENT) {
         'use strict';
 
         routerProvider.addRoute(ROUTE_CONTENT.content, {
-            pattern: '/:path*',
+            path: '/:path*',
             templateUrl: 'controllers/content/content.tpl.html',
             controller: 'contentCtrl'
         });
