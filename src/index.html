@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <base href="/">
 
-        <title ng-bind="$route.current.title">Andrezero</title>
+        <title ng-bind="route.current.$$route.title">Cork Labs</title>
 
         <% if (env.NODE_ENV !== 'development') { %><!-- fonts -->
         <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
@@ -25,7 +25,7 @@
 
     </head>
 
-    <body class="home {{$route.current.section}} {{$route.current.className}}" data-ng-controller="appCtrl">
+    <body class="home {{route.current.$$route.section}} {{route.current.$$route.className}}" data-ng-controller="appCtrl">
         <div id="fb-root"></div>
 
         <div class="site-wrapper">

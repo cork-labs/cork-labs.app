@@ -6,6 +6,8 @@ angular.module('app', [
     'app.config',
     'app.services.content',
     'app.controllers.home',
+    'app.controllers.projects',
+    'app.controllers.about',
     'app.controllers.content',
     'app.components.nav.search'
 ])
@@ -51,6 +53,8 @@ angular.module('app', [
         ROUTE_HOME
     ) {
         'use strict';
+
+        $rootScope.route = $route;
 
     }
 ])
