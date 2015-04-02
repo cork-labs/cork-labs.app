@@ -32,4 +32,3 @@ angular.module('app.controllers.content', [
 ])
 
 ;
-

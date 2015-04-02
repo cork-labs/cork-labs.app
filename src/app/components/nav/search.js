@@ -55,4 +55,3 @@ angular.module('app.components.nav.search', [
 ])
 
 ;
-
