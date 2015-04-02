@@ -1,14 +1,14 @@
 angular.module('app.controllers.projects', [
     'ngRoute',
     // lib
-    'ng.cl.router',
+    'ng.cork.router',
     // app
     'app.controllers.projects.route',
     'app.templates'
 ])
 
 .config([
-    'clRouterProvider',
+    'corkRouterProvider',
     'APP_ROUTE_PROJECTS',
     function config(routerProvider, ROUTE_PROJECTS) {
         'use strict';

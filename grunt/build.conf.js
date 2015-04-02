@@ -93,8 +93,14 @@ module.exports = function (grunt) {
                 '<%= paths.vendor %>/angular/angular.js',
                 '<%= paths.vendor %>/angular-route/angular-route.js',
                 '<%= paths.vendor %>/angular-cookies/angular-cookies.js',
-                '<%= paths.vendor %>/ng.cl.router/dist/ng.cl.router.js',
-                '<%= paths.vendor %>/ng.cl.prevent-nav/dist/ng.cl.prevent-nav.js',
+                '<%= paths.vendor %>/ng.cork.util/dist/ng.cork.util.js',
+                '<%= paths.vendor %>/ng.cork.throttling/dist/ng.cork.throttling.js',
+                '<%= paths.vendor %>/ng.cork.deep/dist/ng.cork.deep.js',
+                '<%= paths.vendor %>/ng.cork.api/dist/ng.cork.api.js',
+                '<%= paths.vendor %>/ng.cork.model/dist/ng.cork.model.js',
+                '<%= paths.vendor %>/ng.cork.router/dist/ng.cork.router.js',
+                '<%= paths.vendor %>/ng.cork.prevent-nav/dist/ng.cork.prevent-nav.js',
+                '<%= paths.vendor %>/ng.cork.ui/dist/ng.cork.ui.js',
                 '<%= paths.vendor %>/ng.cx.config/dist/ng.cx.config.js'
             ],
 
