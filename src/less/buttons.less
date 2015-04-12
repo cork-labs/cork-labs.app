@@ -5,13 +5,26 @@
     color: @fg;
     background-color: @bg;
     border-bottom-color: darken(@bg, 20%);
+    box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.5);
 
     .icon {
         color: @fg;
         background-color: @bg;
     }
 
-    &:focus, &:hover {
+    &:hover {
+
+        color: lighten(@fg, 20%);
+        border-bottom-color: darken(@bg, 15%);
+        box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.5);
+
+        .icon {
+            color: lighten(@fg, 20%);
+            background-color: lighten(@bg, 5%);
+        }
+    }
+
+    &:focus {
 
         @_shadow_color: fade(darken(@bg, 15%), 60);
 
@@ -45,9 +58,12 @@
 }
 
 .btn {
+    position: relative;
+    top: 0;
 
     display: block;
     height: 2rem;
+    line-height: 2rem;
     padding: 0;
     border: none;
     border-bottom-width: 1px;
@@ -57,6 +73,7 @@
     outline: none;
     .transition-property(box-shadow);
     .transition-duration(0.3s);
+    border-radius: 1rem;
     cursor: pointer;
     .button-colors(@color-fg-button, @color-bg-button);
 
@@ -72,31 +89,27 @@
 
     .label {;
         width: 100%;
-        padding: 0.05rem 1em 0;
+        padding: 0 1rem;
     }
 
     &.has-icon {
         .label {
-            padding: 0.05rem 0 0 0.5rem;
+            padding: 0 1rem 0 0.5rem;
         }
     }
 
     .icon {
         width: 2rem;
         text-align: center;
-        .box-shadow(1px 0 1px rgba(250, 250, 250, 0.5));
         .transition-property(all);
         .transition-duration(0.3s);
     }
 
     &:focus, &:hover {
-        border-bottom-width: 2px;
-        border-bottom-style: solid;
     }
 
     &:active {
-
-        .box-shadow(none);
+        top: 1px;
 
         .label {
             position: relative;
@@ -117,6 +130,23 @@
 
 .link-negative {
     color: @color-fg-link-negative;
+}
+
+.btn-clean {
+    padding: 0;
+    width: 1.75rem;
+    height: 1.75rem;
+    line-height: 1.75rem;
+    text-align: center;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+
+    &:focus {
+        .outline();
+    }
 }
 
 .link-clean {

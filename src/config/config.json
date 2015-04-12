@@ -1,2 +1,7 @@
 {
+    "project": {
+        "baseUrl": "http://jarvis.cork-labs.org",
+        "githubUser": "cork-labs",
+        "travisUser": "cork-labs"
+    }
 }

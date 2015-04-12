@@ -1,2 +1,5 @@
 {
+    "project": {
+        "baseUrl": "http://jarvis.cork-labs.local.org"
+    }
 }

@@ -1,35 +1,33 @@
-angular.module('app.controllers.home', [
-    'ngRoute',
-    // lib
-    'ng.cork.router',
-    // app
-    'app.controllers.home.route',
-    'app.templates'
-])
+(function (angular) {
+    'use strict';
 
-.config([
-    'corkRouterProvider',
-    'APP_ROUTE_HOME',
-    function config(routerProvider, ROUTE_HOME) {
-        'use strict';
+    var module = angular.module('app.controllers.home', [
+        'ngRoute',
+        'ng.cork.router',
+        // app
+        'app.templates'
+    ]);
 
-        routerProvider.addRoute(ROUTE_HOME.home, {
-            path: '/',
-            templateUrl: 'controllers/home/home.tpl.html',
-            controller: 'homeCtrl',
-            title: 'Home'
-        });
-    }
-])
+    module.config([
+        'corkRouterProvider',
+        function config(routerProvider) {
 
-.controller('homeCtrl', [
-    '$q',
-    '$http',
-    function homeCtrl($q, $http) {
-        'use strict';
+            routerProvider.addRoute('home', {
+                path: '/',
+                templateUrl: 'controllers/home/home.tpl.html',
+                controller: 'homeCtrl',
+                title: 'Home'
+            });
+        }
+    ]);
 
-        console.log('homeCtrl');
-    }
-])
+    module.controller('homeCtrl', [
+        '$q',
+        '$http',
+        function homeCtrl($q, $http) {
 
-;
+            console.log('homeCtrl');
+        }
+    ]);
+
+})(angular);

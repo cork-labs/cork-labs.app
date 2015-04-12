@@ -62,7 +62,8 @@ module.exports = function (grunt) {
 
             // watched ->
             src_tpl: [
-                '<%= paths.src %>/app/**/*.tpl.html'
+                '<%= paths.src %>/app/**/*.tpl.html',
+                '<%= paths.src %>/lib/**/*.tpl.html'
             ],
 
             // watched ->
@@ -90,17 +91,24 @@ module.exports = function (grunt) {
 
             // lib dependencies
             vendor_js: [
+                '<%= paths.vendor %>/marked/marked.min.js',
                 '<%= paths.vendor %>/angular/angular.js',
                 '<%= paths.vendor %>/angular-route/angular-route.js',
                 '<%= paths.vendor %>/angular-cookies/angular-cookies.js',
+                '<%= paths.vendor %>/angular-marked/angular-marked.js',
                 '<%= paths.vendor %>/ng.cork.util/dist/ng.cork.util.js',
                 '<%= paths.vendor %>/ng.cork.throttling/dist/ng.cork.throttling.js',
+                '<%= paths.vendor %>/ng.cork.pubsub/dist/ng.cork.pubsub.min.js',
+                '<%= paths.vendor %>/ng.cork.prevent-nav/dist/ng.cork.prevent-nav.js',
                 '<%= paths.vendor %>/ng.cork.deep/dist/ng.cork.deep.js',
                 '<%= paths.vendor %>/ng.cork.api/dist/ng.cork.api.js',
                 '<%= paths.vendor %>/ng.cork.model/dist/ng.cork.model.js',
                 '<%= paths.vendor %>/ng.cork.router/dist/ng.cork.router.js',
                 '<%= paths.vendor %>/ng.cork.prevent-nav/dist/ng.cork.prevent-nav.js',
                 '<%= paths.vendor %>/ng.cork.ui/dist/ng.cork.ui.js',
+                '<%= paths.vendor %>/ng.cork.input-marked/dist/ng.cork.input-marked.js',
+                '<%= paths.vendor %>/ng.cork.input-tags/dist/ng.cork.input-tags.js',
+                '<%= paths.vendor %>/ng.cx.generate/dist/ng.cx.generate.js',
                 '<%= paths.vendor %>/ng.cx.config/dist/ng.cx.config.js'
             ],
 
@@ -110,7 +118,10 @@ module.exports = function (grunt) {
             ],
 
             //
-            vendor_css: [],
+            vendor_css: [
+                '<%= paths.vendor %>/ng.cork.input-marked/dist/ng.cork.input-marked.css',
+                '<%= paths.vendor %>/ng.cork.input-tags/dist/ng.cork.input-tags.css',
+            ],
 
             //
             vendor_assets: [],

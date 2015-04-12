@@ -1,0 +1,8 @@
+<ul class="app-project-assets list-unstyled">
+    <li class="app-project-asset asset-{{name}}" ng-repeat="(name,asset) in assets">
+        <a ng-href="{{asset.url}}" title="open {{project.name}} {{asset.name}}"><!--
+            --><i class="asset-icon fa fa-{{asset.icon}}"></i><!--
+            --><span class="text" ng-bind="asset.name"></span><!--
+        --></a>
+    </li>
+</ul>

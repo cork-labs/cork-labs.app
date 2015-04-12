@@ -65,6 +65,7 @@
 @ff-brand: 'Varela', Helvetica, Arial, sans-serif;
 @ff-headers: 'Rambla', Helvetica, Arial, sans-serif;
 @ff-forms: 'Rambla', Helvetica, Arial, sans-serif;
+@ff-data: 'Rambla', Helvetica, Arial, sans-serif;
 
 @color-fg-link: @complement-a-3;
 @color-fg-link-visited: @complement-a-2;
@@ -79,8 +80,8 @@
 
 // accessibility
 
-@shadow-outline1: 0 0 0 1px #fff;
-@shadow-outline2: 0 0 0 2px rgba(17, 26, 31, 0.5);
+@shadow-outline1: 0 0 0 2px #fff;
+@shadow-outline2: 0 0 0 4px rgba(17, 26, 31, 0.5);
 
 .outlineshadow(@shadow) {
     box-shadow: @shadow, @shadow-outline1, @shadow-outline2;
@@ -102,7 +103,10 @@
 
 @color-bg-button-orange: @primary-1;
 
+
 // forms
+
+@color-fg-input-label: @color-fg-grey;
 
 @color-fg-input: @color-fg-blackish;
 @color-fg-input-focus: @color-fg-black;
@@ -124,6 +128,7 @@
 
 @color-border-input-error: @color-fg-input-error;
 @color-border-input-error-focus: @color-fg-input-error-focus;
+
 
 // -- layers
 
@@ -151,6 +156,7 @@
 @foter-height-md: 8rem;
 @foter-height-lg: 12rem;
 
+
 // -- header
 
 @header-base-size: 2rem;
@@ -164,6 +170,21 @@
 @header-border-width-sm-min: 0.5rem;
 @header-border-width-md-min: 0.5rem;
 @header-border-width-lg-min: 0.5rem;
+
+
+// -- components
+
+// - tags
+
+@app-tag-bg-color: @secondary-b-4;
+@app-tag-fg-color: @color-fg-black;
+
+// - cards
+
+@app-card-bg-color: @color-bg-whitesmoke;
+@app-card-shadow-color: lighten(@complement-a-1, 30%);
+@app-card-hover-shadow-color: @complement-a-1;
+
 
 // -- user menu
 

@@ -1,0 +1,108 @@
+.app-project-assets {
+
+    .app-project-asset {
+        display: inline-block;
+        padding: 0 0.2rem;
+    }
+}
+
+.app-project-asset {
+
+    .asset-icon {
+        width: 1.25rem;
+        text-align: left;
+    }
+}
+
+.app-project-assets-edit {
+
+    .app-project-asset {
+        margin-bottom: 1rem;
+
+        .asset-icon {
+            width: 1.5rem; // matches checkbox - aligns asset name with input box below
+        }
+    }
+}
+
+.app-project-asset-edit {
+
+    .clearfix();
+
+    .checkbox {
+        display: block;
+        float: left;
+        padding: 0.25rem 0.5rem 0 0;
+
+        input {
+            margin: 0;
+            width: 1rem;
+            height: 1rem;
+            cursor: pointer;
+
+            &:focus {
+                .outline();
+            }
+        }
+    }
+
+    .input-wrapper {
+
+        position: relative;
+        float: left;
+        overflow: hidden;
+        width: 70%;
+        height: 2rem;
+        margin-right: 1em;
+
+        .default-url {
+            display: none;
+            font-size: 0.8rem;
+            padding: 0.2em 0; // matching input size
+            line-height: 1.7rem;
+            color: @color-fg-low-grey;
+            white-space: nowrap;
+        }
+
+        &.is-default {
+
+            .default-url {
+                display: block;
+            }
+
+            .url {
+                display: none;
+            }
+        }
+    }
+
+    .url {
+        width: 100%;
+    }
+
+    .url-link {
+        float: left;
+
+        &:focus {
+            .outline();
+        };
+    }
+
+    &.is-enabled {
+
+        .input-wrapper.is-focused {
+
+            .default-url {
+                display: none;
+            }
+
+            .url {
+                display: block;
+            }
+        }
+    }
+
+    &.is-disabled {
+        opacity: 0.3;
+    }
+}

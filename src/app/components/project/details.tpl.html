@@ -1,0 +1,27 @@
+<div class="app-project-details">
+
+    <a ng-if="onClick" class="name" ng-click="onClick(project)"><h2 ng-bind="project.name"></h2></a>
+
+    <div class="data-group tags">
+        <h3 class="data-label">Tags</h3>
+        <div app-tags="project.tags"></div>
+    </div>
+
+    <div class="description">
+        <div marked="project.description"></div>
+    </div>
+
+    <div class="data-group version" ng-if="currentVersion">
+        <h3 class="data-label">Version</h3>
+        <span class="data-value">
+            <span class="version" ng-bind="currentVersion.version"></span>
+            <span class="date" nam-timeago="currentVersion.date"></span>
+        </span>
+    </div>
+
+    <div class="data-group assets">
+        <h3 class="data-label">Assets</h3>
+        <div app-project-assets="project"></div>
+    </div>
+
+</div>

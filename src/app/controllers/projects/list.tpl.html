@@ -1,0 +1,21 @@
+<section class="container app-section section-project-list">
+
+    <header class="app-section-header">
+        <h1 class="app-section-title">Projects</h1>
+        <div class="app-toolbar">
+            <button class="btn" ng-click="listProjects.add()">
+                <span class="icon fa fa-plus"></span>
+                <span class="label">add</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="project-list">
+        <ul class="list-unstyled">
+            <li class="app-card" ng-repeat="project in projects">
+                <div app-project-details="project" on-click="listProjects.view"></div>
+            </li>
+        </ul>
+    </div>
+
+</section>

@@ -1,0 +1,51 @@
+<ng-form name="project-edit">
+
+    <div class="form-group form-header">
+
+        <div class="container">
+
+            <h1 class="form-title has-icon">
+                <i class="icon fa fa-pencil"></i>
+                <span class="text" ng-bind="project.name"></span>
+            </h1>
+
+            <div class="form-actions">
+
+                <button tab-index="0" title="cancel changes and return to project" class="form-action btn-clean" ng-click="editProject.cancel()">
+                    <span class="icon fa fa-times"></span>
+                </button>
+
+                <button tab-index="0" title="save project" class="form-action btn" ng-click="editProject.save()">
+                    <span class="icon fa fa-check"></span>
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+
+    <section class="form-fields container">
+
+        <div class="form-group">
+            <label class="form-label" for="project-edit-name">Name</label>
+            <input class="form-control" type="text" ng-model="project.name" id="project-edit-name" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="project-edit-tags">Tags</label>
+            <div cork-input-tags ng-model="project.tags" cork-options="tagsOptions"></div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="project-edit-assets">Assets</label>
+            <div app-project-assets-edit="project"></div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="project-edit-description">Description</label>
+            <div cork-input-marked ng-model="project.description" cork-modes="['edit', 'split']" cork-placeholder="'# foobar'"></div>
+        </div>
+
+    </section>
+
+</ng-form>

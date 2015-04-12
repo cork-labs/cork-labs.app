@@ -1,34 +1,32 @@
-angular.module('app.controllers.content', [
-    'ngRoute',
-    // lib
-    'ng.cork.router',
-    // app
-    'app.controllers.content.route',
-    'app.templates'
-])
+(function (angular) {
+    'use strict';
 
-.config([
-    'corkRouterProvider',
-    'APP_ROUTE_CONTENT',
-    function config(routerProvider, ROUTE_CONTENT) {
-        'use strict';
+    var module = angular.module('app.controllers.content', [
+        'ngRoute',
+        'ng.cork.router',
+        // app
+        'app.templates'
+    ]);
 
-        routerProvider.addRoute(ROUTE_CONTENT.content, {
-            path: '/:path*',
-            templateUrl: 'controllers/content/content.tpl.html',
-            controller: 'contentCtrl'
-        });
-    }
-])
+    module.config([
+        'corkRouterProvider',
+        function config(routerProvider) {
 
-.controller('contentCtrl', [
-    '$q',
-    '$http',
-    function contentCtrl($q, $http) {
-        'use strict';
+            routerProvider.addRoute('content', {
+                path: '/:path*',
+                templateUrl: 'controllers/content/content.tpl.html',
+                controller: 'contentCtrl'
+            });
+        }
+    ]);
 
-        console.log('contentCtrl');
-    }
-])
+    module.controller('contentCtrl', [
+        '$q',
+        '$http',
+        function contentCtrl($q, $http) {
 
-;
+            console.log('contentCtrl');
+        }
+    ]);
+
+})(angular);

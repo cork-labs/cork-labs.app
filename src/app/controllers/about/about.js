@@ -1,35 +1,33 @@
-angular.module('app.controllers.about', [
-    'ngRoute',
-    // lib
-    'ng.cork.router',
-    // app
-    'app.controllers.about.route',
-    'app.templates'
-])
+(function (angular) {
+    'use strict';
 
-.config([
-    'corkRouterProvider',
-    'APP_ROUTE_ABOUT',
-    function config(routerProvider, ROUTE_ABOUT) {
-        'use strict';
+    var module = angular.module('app.controllers.about', [
+        'ngRoute',
+        'ng.cork.router',
+        // app
+        'app.templates'
+    ]);
 
-        routerProvider.addRoute(ROUTE_ABOUT.about, {
-            path: '/about',
-            templateUrl: 'controllers/about/about.tpl.html',
-            controller: 'aboutCtrl',
-            title: 'About'
-        });
-    }
-])
+    module.config([
+        'corkRouterProvider',
+        function config(routerProvider) {
 
-.controller('aboutCtrl', [
-    '$q',
-    '$http',
-    function aboutCtrl($q, $http) {
-        'use strict';
+            routerProvider.addRoute('about', {
+                path: '/about',
+                templateUrl: 'controllers/about/about.tpl.html',
+                controller: 'aboutCtrl',
+                title: 'About'
+            });
+        }
+    ]);
 
-        console.log('aboutCtrl');
-    }
-])
+    module.controller('aboutCtrl', [
+        '$q',
+        '$http',
+        function aboutCtrl($q, $http) {
 
-;
+            console.log('aboutCtrl');
+        }
+    ]);
+
+})(angular);

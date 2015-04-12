@@ -35,10 +35,10 @@ module.exports = function (grunt, data) {
             build_src_assets: {
 
                 __groups: ['build_assets'],
-                files: [{
-                    src: '<%= files.src_assets %>',
-                    dest: '<%= paths.build %>/'
-                }]
+                expand: true,
+                cwd: 'src/assets',
+                src: '**/*',
+                dest: '<%= paths.build %>/assets'
             },
 
             build_vendor_js: {

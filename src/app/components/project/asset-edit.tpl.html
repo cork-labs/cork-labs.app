@@ -1,0 +1,14 @@
+<div class="app-project-asset-edit" ng-class="{'is-disabled': !asset.enabled, 'is-enabled': asset.enabled}">
+
+    <span class="checkbox">
+        <input type="checkbox" ng-model="asset.enabled">
+    </span>
+
+    <div class="input-wrapper" ng-class="{'is-default': isDefault, 'is-focused': isFocused}">
+        <span tabindex="0" class="default-url" ng-bind="'default: ' + defaultUrl" ng-focus="onClickDefaultUrl()" ng-click="onClickDefaultUrl()"></span>
+        <input ng-disabled="!asset.enabled" class="form-control url" type="text" ng-model="asset.url" cork-ui-focus-on="app-project-asset-edit.focus-input" ng-focus="onInputFocus()" ng-blur="onInputBlur()">
+    </div>
+
+    <a class="url-link btn-clean" ng-if="asset.enabled" ng-href="{{currentUrl}}" title="open {{project.name}} {{name}}" target="_blank"><i class="icon fa fa-link"></i></a>
+
+</div>

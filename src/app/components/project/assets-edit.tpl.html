@@ -1,0 +1,7 @@
+<ul class="app-project-assets-edit list-unstyled">
+    <li class="app-project-asset asset-{{name}}" ng-repeat="name in assets"><!--
+        --><i class="asset-icon fa fa-{{icons[name]}}"></i><!--
+        --><span class="text" ng-bind="name"></span><!--
+    --><div app-project-asset-edit="project.assets[name]" app-asset-name="name" app-project="project"></div>
+    </li>
+</ul>

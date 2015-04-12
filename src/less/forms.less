@@ -1,9 +1,78 @@
-// inputs / textarea
+
+// -- form-header
+
+.form-header {
+    position: relative; // .form-actions positioned abs
+    overflow: hidden;
+    background-color: #efefef;
+    box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.5);
+
+    .container {
+        position: relative;
+    }
+
+    .form-title {
+        float: left;
+        width: 100%; // to have ellipsis on .form-title .text
+        margin-bottom: 0;
+        padding-right: 8rem; // fits a .form-actions block with two buttons
+
+        .icon {
+            position: absolute;
+            line-height: 3rem;
+        }
+
+        .text {
+            overflow: hidden;
+            float: left;
+            width: 100%;
+            font-size: 2rem;
+            line-height: 3rem;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        &.has-icon {
+            .text {
+                margin-left: 2.5rem; // fits the action
+            }
+        }
+    }
+
+    .form-actions {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+
+    .form-action {
+        display: inline-block;
+        margin-left: 0.5rem;
+    }
+}
+
+
+// -- form-groups
+
+.form-group {
+
+    margin-bottom: 1.5rem;
+    font-family: @ff-forms;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.9rem;
+    color: @color-fg-input-label;
+}
+
+
+// -- inputs
 
 .form-control {
 
     height: 2rem;
-    padding: 0.2rem 1rem 0;
+    padding: 0.2rem 0;
     font-size: 1rem;
     font-family: @ff-forms;
     color: @color-fg-input;
@@ -30,7 +99,6 @@
     }
 }
 
-
 .field-long-text {
 
     .form-control {
@@ -45,13 +113,7 @@
 }
 
 
-// form-groups
-
-.form-group {
-
-    margin-bottom: 0.5rem;
-    font-family: @ff-forms;
-}
+// -- icons
 
 .input-icon {
 
@@ -88,6 +150,8 @@
 
 }
 
+// -- hints
+
 .has-absolute-help-block {
 
     position: relative;
@@ -109,6 +173,8 @@
         }
     }
 }
+
+// -- errors
 
 .has-error {
 

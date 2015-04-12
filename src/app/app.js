@@ -1,62 +1,55 @@
-angular.module('app', [
-    'ngRoute',
-    //
-    'ng.cx.config',
-    // app
-    'app.config',
-    'app.services.content',
-    'app.controllers.home',
-    'app.controllers.projects',
-    'app.controllers.about',
-    'app.controllers.content',
-    'app.components.nav.search'
-])
+(function (angular) {
+    'use strict';
 
-.config([
-    '$routeProvider',
-    '$locationProvider',
-    'cxConfigProvider',
-    'configData',
-    function appConfig(
-        $routeProvider, $locationProvider,
-        configProvider,
-        configData
-    ) {
-        'use strict';
+    var module = angular.module('app', [
+        'ngRoute',
+        'ng.cx.config',
+        // app
+        'app.config',
+        'app.controllers.home',
+        'app.controllers.projects',
+        'app.controllers.about',
+        'app.controllers.content',
+        'app.components.nav.search'
+    ]);
 
-        $locationProvider.html5Mode(true).hashPrefix('!');
+    module.config([
+        '$routeProvider',
+        '$locationProvider',
+        'cxConfigProvider',
+        'configData',
+        function appConfig(
+            $routeProvider, $locationProvider,
+            configProvider,
+            configData
+        ) {
 
-        configProvider.merge(configData);
-    }
-])
+            $locationProvider.html5Mode(true).hashPrefix('!');
 
-.run([
-    '$rootScope',
-    '$route',
-    '$location',
-    function ($rootScope, $route, $location) {
-        'use strict';
-    }
-])
+            configProvider.merge(configData);
+        }
+    ]);
 
-.controller('appCtrl', [
-    '$scope',
-    '$rootScope',
-    '$route',
-    '$q',
-    '$location',
-    '$window',
-    '$timeout',
-    'APP_ROUTE_HOME',
-    function (
-        $scope, $rootScope, $route, $q, $location, $window, $timeout,
-        ROUTE_HOME
-    ) {
-        'use strict';
+    module.run([
+        '$rootScope',
+        '$route',
+        '$location',
+        function ($rootScope, $route, $location) {}
+    ]);
 
-        $rootScope.route = $route;
+    module.controller('appCtrl', [
+        '$scope',
+        '$rootScope',
+        '$route',
+        '$q',
+        '$location',
+        '$window',
+        '$timeout',
+        function ($scope, $rootScope, $route, $q, $location, $window, $timeout) {
 
-    }
-])
+            $rootScope.route = $route;
 
-;
+        }
+    ]);
+
+})(angular);
