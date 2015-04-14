@@ -2,14 +2,15 @@
     'use strict';
 
     var module = angular.module('app.controllers.projects', [
-        'ngRoute',
         'ng.cork.router',
         // lib
         'ng.cork.input-marked',
         'ng.cork.input-tags',
         'ng.cork.prevent-nav',
+        'ng.cork.ui.keys',
         'cork-labs.api',
         // app
+        'app.components.project-list',
         'app.components.project-details',
         'app.components.project-assets',
         'app.templates'
@@ -21,14 +22,27 @@
 
             routerProvider.addRoute('project.list', {
                 path: '/projects',
+                section: 'projects',
                 templateUrl: 'controllers/projects/list.tpl.html',
                 controllerAs: 'listProjects',
                 controller: 'listProjectsCtrl',
                 title: 'Projects'
             });
 
+            routerProvider.addRoute('project.search', {
+                path: '/projects/search/:terms*?',
+                section: 'projects',
+                templateUrl: 'controllers/projects/search.tpl.html',
+                controllerAs: 'searchProjects',
+                controller: 'searchProjectsCtrl',
+                title: 'Search Projects'
+            });
+
+            routerProvider.addRedirect('/projects/search', '/projects/search/');
+
             routerProvider.addRoute('project.view', {
                 path: '/projects/:id',
+                section: 'projects',
                 templateUrl: 'controllers/projects/view.tpl.html',
                 controllerAs: 'viewProject',
                 controller: 'viewProjectCtrl',
@@ -37,6 +51,7 @@
 
             routerProvider.addRoute('project.edit', {
                 path: '/projects/:id/edit',
+                section: 'projects',
                 templateUrl: 'controllers/projects/edit.tpl.html',
                 controllerAs: 'editProject',
                 controller: 'editProjectCtrl',
@@ -156,6 +171,75 @@
             preventNav.addInterceptor(function () {
                 return !$scope['project-edit'] || !$scope['project-edit'].$dirty;
             }, null, 'Changes made to this project will be lost.');
+        }
+    ]);
+
+    module.controller('searchProjectsCtrl', [
+        '$rootScope',
+        '$timeout',
+        '$scope',
+        '$q',
+        '$http',
+        'corkRouter',
+        'corkThrottling',
+        'corkUiKeys',
+        'corkLabsApiClient',
+        function searchProjectsCtrl($rootScope, $timeout, $scope, $q, $http, router, corkThrottling, corkUiKeys, apiClient) {
+            var searchProjects = this;
+
+            searchProjects.view = function (project) {
+                router.goTo('project.view', {
+                    id: project.id
+                });
+            };
+
+            var projects = apiClient.service('projects');
+            var tags = apiClient.service('tags');
+
+            var debouncedSearch = corkThrottling.debounce(function (terms) {
+                if (terms.length || $scope.tags.length) {
+                    $scope.isPristine = false;
+                    $scope.loading = true;
+                    $scope.projects = [];
+                    $timeout(function () {
+                        projects.search($scope.terms, $scope.tags).then(function (res) {
+                            $scope.loading = false;
+                            $scope.projects = res;
+                        });
+                    }, 1000);
+                }
+            });
+
+            $scope.tags = [];
+            $scope.terms = router.$params.terms || '';
+            $scope.focus = !!$scope.terms || 'auto';
+            $scope.isPristine = true;
+            if ($scope.terms) {
+                $scope.isPristine = false;
+            }
+
+            $scope.tagsOptions = {
+                placeholder: 'ex: AngularJS',
+                attr: {
+                    label: 'name'
+                },
+                display: {
+                    tags: 'hide'
+                },
+                searchFn: function (terms) {
+                    return tags.search(terms);
+                }
+            };
+
+            $scope.onSearch = function (terms) {
+                console.log('search', terms);
+                debouncedSearch(terms);
+            };
+
+            $scope.$watch('tags', function () {
+                console.log('tags', $scope.terms, $scope.tags);
+                debouncedSearch($scope.terms);
+            }, true);
         }
     ]);
 

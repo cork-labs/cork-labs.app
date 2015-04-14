@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <base href="/">
 
-        <title ng-bind="route.current.$$route.title">Cork Labs</title>
+        <title ng-bind="router.$$route.title">Cork Labs</title>
 
         <% if (env.NODE_ENV !== 'development') { %><!-- fonts -->
         <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
@@ -25,7 +25,7 @@
 
     </head>
 
-    <body class="home {{route.current.$$route.section}} {{route.current.$$route.className}}" data-ng-controller="appCtrl">
+    <body class="home {{router.$$route.section}} {{router.$$route.className}}" data-ng-controller="appCtrl">
         <div id="fb-root"></div>
 
         <div class="site-wrapper">
@@ -41,9 +41,9 @@
                         </a>
                     </h1>
                     <div class="nav-content">
-                        <a class="nav-item nav-section" href="/projects">projects</a>
-                        <a class="nav-item nav-section" href="/about">about</a>
-                        <div class="nav-item" nav-search></div>
+                        <a class="nav-item nav-section" href="/projects" ng-class="{'is-active': router.$$route.section === 'projects'}">projects</a>
+                        <a class="nav-item nav-section" href="/about" ng-class="{'is-active': router.$$route.section === 'about'}">about</a>
+                        <div class="nav-item search" app-nav-search min-length="2"></div>
                     </div>
                     <hr>
                 </div>

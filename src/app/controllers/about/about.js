@@ -2,7 +2,6 @@
     'use strict';
 
     var module = angular.module('app.controllers.about', [
-        'ngRoute',
         'ng.cork.router',
         // app
         'app.templates'
@@ -14,7 +13,9 @@
 
             routerProvider.addRoute('about', {
                 path: '/about',
+                section: 'about',
                 templateUrl: 'controllers/about/about.tpl.html',
+                controllerAs: 'about',
                 controller: 'aboutCtrl',
                 title: 'About'
             });

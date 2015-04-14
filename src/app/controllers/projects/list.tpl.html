@@ -11,11 +11,7 @@
     </header>
 
     <div class="project-list">
-        <ul class="list-unstyled">
-            <li class="app-card" ng-repeat="project in projects">
-                <div app-project-details="project" on-click="listProjects.view"></div>
-            </li>
-        </ul>
+        <div app-project-list="projects" on-click="listProjects.view"></div>
     </div>
 
 </section>

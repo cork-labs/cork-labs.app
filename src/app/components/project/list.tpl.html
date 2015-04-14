@@ -1,0 +1,11 @@
+<ul class="app-project-list list-unstyled">
+    <li class="project app-card" ng-repeat="project in projects">
+        <div class="app-card-header">
+            <div class="app-card-type">project</div>
+            <div class="app-card-title">
+                <h3 class="text"><a ng-click="onClick(project)" ng-bind="project.name"></a></h3>
+            </div>
+        </div>
+        <div app-project-details="project" on-click="onClick"></div>
+    </li>
+</ul>

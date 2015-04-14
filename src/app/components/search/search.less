@@ -1,4 +1,6 @@
-.nav-search {
+.app-nav-search {
+    width: 100%;
+    height: 100%;
     display: inline-block;
     height: 2.5em;
 
@@ -23,10 +25,11 @@
 
     .search-terms {
         position: absolute;
+        z-index: @layer-header;
         left: 0;
         right: 0;
         // top: 2.15em; // responsive
-        overflow: hidden;
+        // overflow: hidden;
         // padding: @header-border-width; // responsive
         font-size: 1.4rem;
         line-height: 1.4rem;
@@ -43,10 +46,29 @@
             text-align: center;
             border-bottom-style: solid;
         }
-
     }
 
-    &.expanded {
+    .app-search-terms {
+
+        .hint {
+            position: absolute;
+            top: -0.75rem;
+            right: 0rem;
+            left: 0rem;
+            padding-right: 1rem;
+            line-height: 1.2rem;
+            font-size: 0.7rem;
+            text-align: right;
+            color: @color-bg-toned-white;
+            background-color: fade(@color-bg-header-bottom, 50%);
+        }
+    }
+
+    &.is-expanded {
+        .icon {
+            color: white;
+            border-bottom: 0.3rem solid @color-bg-whitest;
+        }
 
         .nav-item {
             border-bottom-color: @primary-1;
@@ -65,7 +87,7 @@
 // -- responsive
 
 @media (max-width: @screen-nano-max) {
-    .nav-search {
+    .app-nav-search {
         .search-terms {
             top: 2.15em;
             padding: @header-border-width;
@@ -74,7 +96,7 @@
 }
 
 @media (min-width: @screen-xs-min) {
-    .nav-search {
+    .app-nav-search {
         .search-terms {
             top: 3.75em;
             padding: @header-border-width-xs-min;
@@ -83,16 +105,16 @@
 }
 
 @media (min-width: @screen-sm-min) {
-    .nav-search {
+    .app-nav-search {
         .search-terms {
-            top: 3.2em;
+            top: 5.3rem;
             padding: @header-border-width-sm-min;
         }
     }
 }
 
 @media (min-width: @screen-md-min) {
-    .nav-search {
+    .app-nav-search {
         .search-terms {
             top: 3.75em;
             padding: @header-border-width-md-min;
@@ -101,7 +123,7 @@
 }
 
 @media (min-width: @screen-lg-min) {
-    .nav-search {
+    .app-nav-search {
         .search-terms {
             top: 3.75em;
             padding: @header-border-width-lg-min;

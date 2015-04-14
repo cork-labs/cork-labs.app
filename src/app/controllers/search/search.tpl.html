@@ -1,0 +1,20 @@
+<section class="container app-section">
+
+    <header class="app-section-header">
+        <h1 class="app-section-title">Search</h1>
+    </header>
+
+    <div class="form-group">
+        <label class="form-label">terms</label>
+        <div class="search-terms" app-search-terms ng-model="terms" on-search="onSearch(terms)" search-on-type="true" focus-on="{{focus}}"></div>
+    </div>
+
+    <div app-loader="!projects || loading"></div>
+
+    <div ng-if="projects">
+
+        <div app-project-results="projects" mode="compact" terms="terms"></div>
+
+    </div>
+
+</section>

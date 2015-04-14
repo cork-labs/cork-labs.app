@@ -2,24 +2,23 @@
     'use strict';
 
     var module = angular.module('app', [
-        'ngRoute',
         'ng.cx.config',
         // app
         'app.config',
         'app.controllers.home',
         'app.controllers.projects',
+        'app.controllers.search',
         'app.controllers.about',
-        'app.controllers.content',
-        'app.components.nav.search'
+        'app.controllers.content', // must be last, has a catch all
+        'app.components.search'
     ]);
 
     module.config([
-        '$routeProvider',
         '$locationProvider',
         'cxConfigProvider',
         'configData',
         function appConfig(
-            $routeProvider, $locationProvider,
+            $locationProvider,
             configProvider,
             configData
         ) {
@@ -32,23 +31,22 @@
 
     module.run([
         '$rootScope',
-        '$route',
         '$location',
-        function ($rootScope, $route, $location) {}
+        'corkRouter',
+        function ($rootScope, $location) {}
     ]);
 
     module.controller('appCtrl', [
         '$scope',
         '$rootScope',
-        '$route',
         '$q',
         '$location',
         '$window',
         '$timeout',
-        function ($scope, $rootScope, $route, $q, $location, $window, $timeout) {
+        'corkRouter',
+        function ($scope, $rootScope, $q, $location, $window, $timeout, corkRouter) {
 
-            $rootScope.route = $route;
-
+            $rootScope.router = corkRouter;
         }
     ]);
 

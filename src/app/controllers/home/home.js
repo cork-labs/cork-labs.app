@@ -2,7 +2,6 @@
     'use strict';
 
     var module = angular.module('app.controllers.home', [
-        'ngRoute',
         'ng.cork.router',
         // app
         'app.templates'
@@ -15,6 +14,7 @@
             routerProvider.addRoute('home', {
                 path: '/',
                 templateUrl: 'controllers/home/home.tpl.html',
+                controllerAs: 'home',
                 controller: 'homeCtrl',
                 title: 'Home'
             });

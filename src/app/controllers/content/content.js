@@ -2,7 +2,6 @@
     'use strict';
 
     var module = angular.module('app.controllers.content', [
-        'ngRoute',
         'ng.cork.router',
         // app
         'app.templates'
@@ -15,6 +14,7 @@
             routerProvider.addRoute('content', {
                 path: '/:path*',
                 templateUrl: 'controllers/content/content.tpl.html',
+                controllerAs: 'content',
                 controller: 'contentCtrl'
             });
         }

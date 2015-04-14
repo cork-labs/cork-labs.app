@@ -66,7 +66,7 @@
                         },
                         search: {
                             verb: 'POST',
-                            url: '/project',
+                            url: '/project/search',
                             args: function (req, terms, tags) {
                                 req.set('data.terms', terms);
                                 req.set('data.tags', tags);

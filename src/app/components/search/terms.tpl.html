@@ -1,0 +1,6 @@
+<div class="app-search-terms">
+    <input type="text" class="form-control" name="search-terms"
+      ng-model="terms" ng-keyup="onInputKeyUp($event)" ng-focus="onInputFocus()" ng-blur="onInputBlur()"
+      placeholder="ex: throttling" cork-ui-focus-on="{{focusOn}}" />
+    <div class="hint" ng-if="hintVisible">press Enter to search</div>
+</div>

@@ -19,12 +19,17 @@
         -webkit-transition: border-color 0.5s ease, border-width 0.5s ease;
         transition: border-color 0.5s ease, border-width 0.5s ease;
 
+        &.search {
+            padding: 0;
+            margin-left: 1rem;
+        }
+
         &:focus, &:hover {
             //border-bottom-color: @primary-1;
             border-bottom-color: whitesmoke;
         };
 
-        &.active {
+        &.is-active {
             height: 3.3em;
             color: white;
             border-bottom-color: @color-bg-header-bottom;
@@ -44,6 +49,12 @@
 // -- responsive
 
 @media (max-width: @screen-nano-max) {
+
+    .nav-content {
+        .nav-item {
+            height: 3rem;
+        }
+    }
 
     .nav-content .nav-section {
         display: none;
