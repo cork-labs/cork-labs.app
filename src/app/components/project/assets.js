@@ -40,16 +40,16 @@
         return ret;
     }
 
-    function interpolateAssetUrl(config, project, name, version) {
+    function interpolateAssetUrl(config, project, name, tag) {
         switch (name) {
         case 'repo':
             return 'https://github.com/' + config.get('project.githubUser') + '/' + project.id;
         case 'travis':
             return 'https://travis-ci.org/' + config.get('project.travisUser') + '/' + project.id;
         case 'demo':
-            return config.get('project.baseUrl') + '/' + project.id + '/' + version + '/docs/#/demos';
+            return config.get('project.baseUrl') + '/' + project.id + '/' + tag + '/docs/#/demos';
         default:
-            return config.get('project.baseUrl') + '/' + project.id + '/' + version + '/' + name;
+            return config.get('project.baseUrl') + '/' + project.id + '/' + tag + '/' + name;
         }
     }
 

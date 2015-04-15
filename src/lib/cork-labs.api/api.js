@@ -60,6 +60,26 @@
                                 req.data = project;
                             }
                         },
+                        build: {
+                            verb: 'POST',
+                            pattern: '/project/:id/build',
+                            args: function (req, project, tag) {
+                                req.set('urlParams.id', project.id);
+                                req.data = {
+                                    tag: tag
+                                };
+                            }
+                        },
+                        setCurrentVersion: {
+                            verb: 'POST',
+                            pattern: '/project/:id/current-version',
+                            args: function (req, project, tag) {
+                                req.set('urlParams.id', project.id);
+                                req.data = {
+                                    tag: tag
+                                };
+                            }
+                        },
                         list: {
                             verb: 'GET',
                             url: '/project'

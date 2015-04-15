@@ -232,6 +232,18 @@
                 }
             };
 
+            // -- @todo proper version editing
+
+            // @todo executing state, block versions ui, update model/handle errors
+            viewProject.buildVersion = function (tag) {
+                projects.build($scope.project, tag);
+            };
+
+            // @todo executing state, block versions ui, update model/handle errors
+            viewProject.setCurrentVersion = function (tag) {
+                projects.setCurrentVersion($scope.project, tag);
+            };
+
             viewProject.loading = true;
             projects.get(id).then(function (res) {
                 viewProject.loading = false;
@@ -253,6 +265,8 @@
                     return tags.create(tag);
                 }
             };
+
+            // -- @todo proper version editing
 
             $scope.$watch('project.versions', function (val) {
                 $scope.versionsJSON = JSON.stringify(isArray(val) ? val : []);
