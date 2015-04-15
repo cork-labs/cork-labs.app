@@ -4,8 +4,8 @@
 .form-header {
     position: relative; // .form-actions positioned abs
     overflow: hidden;
-    background-color: #efefef;
-    box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.5);
+    background-color: lighten(@complement-a-5, 20%);
+    border-bottom: 0.3rem solid @complement-a-5;
 
     .container {
         position: relative;
@@ -168,14 +168,16 @@
         font-size: 0.85rem;
         line-height: 1rem;
         white-space: nowrap;
-
-        &.is-error {
-            color: @color-fg-error;
-        }
     }
 }
 
 // -- errors
+
+.form-error {
+    line-height: 1rem;
+    margin-bottom: 0.5rem;
+    color: @color-fg-error;
+}
 
 .has-error {
 

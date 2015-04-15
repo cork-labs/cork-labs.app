@@ -4,6 +4,7 @@
 
 .app-section-header {
     .clearfix();
+    position: relative;
     margin-bottom: 1rem;
 }
 
@@ -11,13 +12,15 @@
 .app-section-title {
     float: left;
     margin-bottom: 0;
-    font-size: 2rem;
+    margin-right: 1rem;
+    font-size: 2.25rem;
 }
 
 .app-section-header {
 
     .app-toolbar {
-        float: right;
-        margin-top: 0.25rem; // aligns with section-title
+        position: absolute;
+        top: 0.5rem;  // aligns with section-title
+        right: 0;
     }
 }

@@ -17,10 +17,15 @@
         travis: 'cubes',
     };
 
-    function prioritizeAssets(assets, all) {
+    function prioritizeAssets(config, project, all) {
         var ret = [];
         var name;
+        var assets;
         var asset;
+        if ((!project || !project.assets) && !all) {
+            return [];
+        }
+        assets = project && project.assets ? project.assets : [];
         for (var ix = 0; ix < assetPriority.length; ix++) {
             name = assetPriority[ix];
             if ((asset = assets[name]) && (all || assets[name].enabled)) {
@@ -63,8 +68,26 @@
         return res;
     };
 
+    var getProjectBadge = function (config, project, name) {
+        if (!project || !project.assets || !name) {
+            return null;
+        }
+        var badge = {
+            name: name
+        };
+        if (name === 'travis' && project.assets[name]) {
+            badge.url = interpolateAssetUrl(config, project, name);
+            badge.img = 'http://img.shields.io/travis/' + config.get('project.travisUser') + '/' + project.id + '/master.svg?style=flat-square';
+        } else if (name === 'bower') {
+            badge.url = interpolateAssetUrl(config, project, 'repo');
+            badge.img = 'http://img.shields.io/bower/v/' + project.id + '.svg?style=flat-square';
+        }
+        return badge;
+    };
+
     module.directive('appProjectAssets', [
-        function appProject() {
+        'cxConfig',
+        function appProjectAssets(cxConfig) {
             return {
                 scope: {
                     project: '=appProjectAssets'
@@ -80,8 +103,7 @@
                         $scope.assets = [];
 
                         $scope.$watch('project.assets', function (val) {
-                            val = val || {};
-                            $scope.assets = prioritizeAssets(val);
+                            $scope.assets = prioritizeAssets(cxConfig, $scope.project);
                         }, true);
                     }
                 ]
@@ -89,8 +111,38 @@
         }
     ]);
 
+    module.directive('appProjectAssetBadge', [
+        'cxConfig',
+        function appProjectAssetBadge(cxConfig) {
+            return {
+                scope: {
+                    name: '=appBadgeName',
+                    project: '=appProject'
+                },
+                restrict: 'A',
+                templateUrl: 'components/project/asset-badge.tpl.html',
+                controllerAs: 'projectAssetEdit',
+                controller: [
+                    '$scope',
+                    function appProjectAssetBadgeCtrl($scope) {
+                        var projectAssetEdit = this;
+
+                        var updateBadge = function () {
+                            if ($scope.name && $scope.project) {
+                                $scope.badge = getProjectBadge(cxConfig, $scope.project, $scope.name);
+                            }
+                        };
+
+                        $scope.$watch('project.assets', updateBadge);
+                        $scope.$watch('name', updateBadge);
+                    }
+                ]
+            };
+        }
+    ]);
+
     module.directive('appProjectAssetsEdit', [
-        function appProject() {
+        function appProjectAssetsEdit() {
             return {
                 scope: {
                     project: '=appProjectAssetsEdit'
@@ -113,7 +165,7 @@
 
     module.directive('appProjectAssetEdit', [
         'cxConfig',
-        function appProject(cxConfig) {
+        function appProjectAssetEdit(cxConfig) {
             return {
                 scope: {
                     asset: '=appProjectAssetEdit',

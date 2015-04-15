@@ -2,6 +2,10 @@
 
     <header class="app-section-header">
         <h1 class="app-section-title" ng-bind="project.name"></h1>
+        <p class="badges">
+            <span class="badge travis" app-project-asset-badge app-project="project" app-badge-name="'travis'"></span>
+            <span class="badge bower" app-project-asset-badge app-project="project" app-badge-name="'bower'"></span>
+        </p>
         <div class="app-toolbar">
             <button class="btn" ng-click="viewProject.edit()">
                 <span class="icon fa fa-pencil"></span>
@@ -10,5 +14,9 @@
     </header>
 
     <div app-project-details="project"></div>
+
+    <div ng-if="readme">
+        <div marked="readme"></div>
+    </div>
 
 </section>

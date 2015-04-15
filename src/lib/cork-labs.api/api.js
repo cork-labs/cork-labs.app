@@ -106,7 +106,12 @@
                             url: '/tag/search',
                             args: function (req, terms) {
                                 req.set('data.terms', terms);
-                            }
+                            },
+                            request: [function (req) {
+                                if (!req.get('data.terms')) {
+                                    return [];
+                                }
+                            }]
                         },
                         get: {
                             verb: 'GET',

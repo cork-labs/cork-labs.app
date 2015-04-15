@@ -1,4 +1,4 @@
-<ng-form name="project-edit">
+<ng-form name="project-edit" class="form-project-edit">
 
     <div class="form-group form-header">
 
@@ -26,24 +26,35 @@
 
     <section class="form-fields container">
 
-        <div class="form-group">
+        <div class="form-group name">
             <label class="form-label" for="project-edit-name">Name</label>
             <input class="form-control" type="text" ng-model="project.name" id="project-edit-name" />
         </div>
 
-        <div class="form-group">
+        <div class="form-group tags">
             <label class="form-label" for="project-edit-tags">Tags</label>
-            <div cork-input-tags ng-model="project.tags" cork-options="tagsOptions"></div>
+            <div cork-input-tags ng-model="project.tags" cork-options="tagsOptions" cork-id="project-edit-tags" cork-placeholder="Ex: AngularJS"></div>
         </div>
 
-        <div class="form-group">
-            <label class="form-label" for="project-edit-assets">Assets</label>
+        <div class="form-group assets">
+            <label class="form-label">Assets</label>
             <div app-project-assets-edit="project"></div>
+        </div>
+
+        <div class="form-group versions" ng-class="{'has-error': versionsParseError}">
+            <label class="form-label" for="project-edit-versions">Versions</label>
+            <textarea class="form-control" ng-model="versionsJSON" id="project-edit-versions"></textarea>
+            <div class="form-error" ng-if="versionsParseError">Invalid JSON</div>
         </div>
 
         <div class="form-group">
             <label class="form-label" for="project-edit-description">Description</label>
-            <div cork-input-marked ng-model="project.description" cork-modes="['edit', 'split']" cork-placeholder="'# foobar'"></div>
+            <div cork-input-marked ng-model="project.description" cork-modes="['edit', 'split']" cork-id="project-edit-description" cork-placeholder="'### Lorem Ipsum'"></div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="project-edit-readme">Readme</label>
+            <div cork-input-marked ng-model="project.readme" cork-modes="['edit', 'split']" cork-id="project-edit-readme" cork-placeholder="'### Lorem Ipsum'"></div>
         </div>
 
     </section>

@@ -23,7 +23,9 @@
                     function appProjectDetailsCtrl($scope) {
                         var projectDetails = this;
 
-                        $scope.currentVersion = $scope.project && $scope.project.versions && $scope.project.versions[0];
+                        $scope.$watch('project', function (val) {
+                            $scope.currentVersion = val && val.versions && val.versions[val.versions.length - 1];
+                        });
                     }
                 ]
             };
