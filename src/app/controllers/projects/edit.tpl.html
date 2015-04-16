@@ -47,8 +47,8 @@
             <textarea class="form-control" ng-model="versionsJSON" id="project-edit-versions"></textarea>
             <div class="form-error" ng-if="versionsParseError">Invalid JSON</div>
             <div class="version" ng-repeat="version in versions">
-                <button ng-if="project.currentVersionTag !== version.tag" class="btn-clean" ng-click="editProject.setCurrentVersion(version.tag)"><i class="icon fa fa-circle-o"></i></button>
-                <span ng-if="project.currentVersionTag === version.tag" class="btn-clean is-disabled"><i class="icon fa fa-dot-circle-o"></i></span>
+                <button ng-if="project.currentVersion.tag !== version.tag" class="btn-clean" ng-click="editProject.setCurrentVersion(version.tag)"><i class="icon fa fa-circle-o"></i></button>
+                <span ng-if="project.currentVersion.tag === version.tag" class="btn-clean is-disabled"><i class="icon fa fa-dot-circle-o"></i></span>
                 <button class="btn btn-default" ng-click="editProject.buildVersion(version.tag)"><i class="icon fa fa-upload"></i></button>
                 <span class="tag" ng-bind="version.tag"></span>
                 <span class="date" ng-bind="version.date"></span>
