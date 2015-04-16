@@ -44,7 +44,7 @@
         <!-- @todo editing versions should be only atomic operations (in its own form, maybe)-->
         <div class="form-group versions" ng-class="{'has-error': versionsParseError}">
             <label class="form-label" for="project-edit-versions">Versions</label>
-            <textarea class="form-control" ng-model="versionsJSON" id="project-edit-versions"></textarea>
+            <textarea class="form-control" ng-model="versionsJSON" id="project-edit-versions" cork-ui-textarea-auto-resize></textarea>
             <div class="form-error" ng-if="versionsParseError">Invalid JSON</div>
             <div class="version" ng-repeat="version in versions">
                 <button ng-if="project.currentVersion.tag !== version.tag" class="btn-clean" ng-click="editProject.setCurrentVersion(version.tag)"><i class="icon fa fa-circle-o"></i></button>

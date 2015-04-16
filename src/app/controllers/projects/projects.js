@@ -8,6 +8,7 @@
         'ng.cork.input-tags',
         'ng.cork.prevent-nav',
         'ng.cork.ui.keys',
+        'ng.cork.ui.textarea-auto-resize',
         'cork-labs.api',
         // app
         'app.components.project-list',
@@ -241,7 +242,12 @@
 
             // @todo executing state, block versions ui, update model/handle errors
             viewProject.setCurrentVersion = function (tag) {
-                projects.setCurrentVersion($scope.project, tag);
+                projects.setCurrentVersion($scope.project, tag).then(function () {
+                    // @todo hack, this does not update other properties of currentVersion (such as date)
+                    // either take a response form the server or implement a client side getVersionByTag() in the project model
+                    $scope.project.currentVersion = $scope.project.currentVersion || {};
+                    $scope.project.currentVersion.tag = tag;
+                });
             };
 
             viewProject.loading = true;
