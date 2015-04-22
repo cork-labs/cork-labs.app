@@ -3,13 +3,15 @@
 
     var module = angular.module('app.controllers.projects', [
         'ng.cork.router',
-        // lib
+        'ng.cork.authorization',
         'ng.cork.input-marked',
         'ng.cork.input-tags',
         'ng.cork.prevent-nav',
         'ng.cork.ui.keys',
         'ng.cork.ui.textarea-auto-resize',
-        'cork-labs.api',
+        // lib
+        'app.services.cork-labs.api',
+        'app.services.cork-labs.auth',
         // app
         'app.components.project-list',
         'app.components.project-details',
@@ -30,11 +32,13 @@
         return '';
     };
 
-    module.config([
-        'corkRouterProvider',
-        function config(routerProvider) {
+    module.run([
+        '$q',
+        'corkRouter',
+        'corkAuthorization',
+        function run($q, router, authorization) {
 
-            routerProvider.addRoute('project.list', {
+            router.addRoute('project.list', {
                 path: '/projects',
                 section: 'projects',
                 templateUrl: 'controllers/projects/list.tpl.html',
@@ -43,7 +47,7 @@
                 title: 'Projects'
             });
 
-            routerProvider.addRoute('project.search', {
+            router.addRoute('project.search', {
                 path: '/projects/search/:terms*?',
                 section: 'projects',
                 templateUrl: 'controllers/projects/search.tpl.html',
@@ -52,9 +56,9 @@
                 title: 'Search Projects'
             });
 
-            routerProvider.addRedirect('/projects/search', '/projects/search/');
+            router.addRedirect('/projects/search', '/projects/search/');
 
-            routerProvider.addRoute('project.view', {
+            router.addRoute('project.view', {
                 path: '/projects/:id',
                 section: 'projects',
                 templateUrl: 'controllers/projects/view.tpl.html',
@@ -63,13 +67,19 @@
                 title: 'Project'
             });
 
-            routerProvider.addRoute('project.edit', {
+            router.addRoute('project.edit', {
                 path: '/projects/:id/edit',
                 section: 'projects',
                 templateUrl: 'controllers/projects/edit.tpl.html',
                 controllerAs: 'editProject',
                 controller: 'editProjectCtrl',
-                title: 'Project'
+                title: 'Project',
+                resolve: {
+                    authorize: authorization.$authorizeRoute
+                },
+                corkAuthorization: {
+                    rules: [authorization.middleware('isAdmin')]
+                }
             });
         }
     ]);

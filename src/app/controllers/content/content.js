@@ -3,15 +3,16 @@
 
     var module = angular.module('app.controllers.content', [
         'ng.cork.router',
+        // lib
         // app
         'app.templates'
     ]);
 
-    module.config([
-        'corkRouterProvider',
-        function config(routerProvider) {
+    module.run([
+        'corkRouter',
+        function run(router) {
 
-            routerProvider.addRoute('content', {
+            router.addRoute('content', {
                 path: '/:path*',
                 templateUrl: 'controllers/content/content.tpl.html',
                 controllerAs: 'content',

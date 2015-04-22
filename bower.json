@@ -21,6 +21,8 @@
     "fsm-sticky-header": "*",
     "ng.cx.config": "~0.0.1",
     "ng.cork.router": "~0.0.5",
+    "ng.cork.authorization": "~0.0.1",
+    "ng.cork.identity": "~0.0.1",
     "ng.cork.prevent-nav": "~0.0.5",
     "ng.cork.throttling": "~0.0.6",
     "ng.cork.api": "~0.0.3",

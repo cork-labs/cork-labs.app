@@ -6,16 +6,17 @@
         'ng.cork.throttling',
         'ng.cork.input-tags',
         'ng.cork.ui.keys',
-        'cork-labs.api',
+        // lib
+        'app.services.cork-labs.api',
         // app
         'app.templates'
     ]);
 
-    module.config([
-        'corkRouterProvider',
-        function config(routerProvider) {
+    module.run([
+        'corkRouter',
+        function run(router) {
 
-            routerProvider.addRoute('search', {
+            router.addRoute('search', {
                 path: '/search/:terms*?',
                 templateUrl: 'controllers/search/search.tpl.html',
                 controllerAs: 'search',
@@ -23,7 +24,7 @@
                 title: 'Search'
             });
 
-            routerProvider.addRedirect('/search', '/search/');
+            router.addRedirect('/search', '/search/');
         }
     ]);
 

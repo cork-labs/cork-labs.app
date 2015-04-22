@@ -3,15 +3,16 @@
 
     var module = angular.module('app.controllers.home', [
         'ng.cork.router',
+        // lib
         // app
         'app.templates'
     ]);
 
-    module.config([
-        'corkRouterProvider',
-        function config(routerProvider) {
+    module.run([
+        'corkRouter',
+        function run(router) {
 
-            routerProvider.addRoute('home', {
+            router.addRoute('home', {
                 path: '/',
                 templateUrl: 'controllers/home/home.tpl.html',
                 controllerAs: 'home',

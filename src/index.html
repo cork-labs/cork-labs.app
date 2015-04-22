@@ -60,7 +60,17 @@
         <footer class="site-footer" role="contentinfo">
             <hr/>
             <div class="container">
-                <p>Cork Labs &copy; <%= grunt.template.today("yyyy") %></p>
+                <p class="colophon">
+                    Cork Labs &copy; <%= grunt.template.today("yyyy") %>
+                </p>
+                <p class="nav">
+                    <a class="sign-in" ng-click="githubSignIn()" ng-if="!identity.current || !identity.current.id">
+                        <i class="fa fa-unlock"></i>
+                    </a>
+                    <a class="sign-in" ng-click="signOut()" ng-if="identity.current && identity.current.id">
+                        <i class="fa fa-lock"></i>
+                    </a>
+                </p>
             </div>
         </footer>
 

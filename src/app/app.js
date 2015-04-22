@@ -4,6 +4,8 @@
     var module = angular.module('app', [
         'ng.cx.config',
         // app
+        'app.services.cork-labs.api',
+        'app.services.cork-labs.auth',
         'app.config',
         'app.controllers.home',
         'app.controllers.projects',
@@ -17,23 +19,41 @@
         '$locationProvider',
         'cxConfigProvider',
         'configData',
-        function appConfig(
-            $locationProvider,
-            configProvider,
-            configData
-        ) {
+        'corkAuthorizationProvider',
+        'corkIdentityProvider',
+        'corkLabsApiClientProvider',
+        function appConfig($locationProvider, configProvider, configData, authorizationProvider, identityProvider, apiClientProvider) {
+
+            // -- $location
 
             $locationProvider.html5Mode(true).hashPrefix('!');
 
+            // -- config
+
             configProvider.merge(configData);
+
+            // -- authorization
+
+            authorizationProvider.configure({
+                defaultRedirectPath: '/'
+            });
+
+            // -- api
+
+            //apiClientProvider.configure({
+            //    baseUrl: '/api'
+            //});
+
         }
     ]);
 
     module.run([
         '$rootScope',
         '$location',
-        'corkRouter',
-        function ($rootScope, $location) {}
+        '$window',
+        function ($rootScope, $location, $window) {
+
+        }
     ]);
 
     module.controller('appCtrl', [
@@ -44,9 +64,25 @@
         '$window',
         '$timeout',
         'corkRouter',
-        function ($scope, $rootScope, $q, $location, $window, $timeout, corkRouter) {
+        'corkIdentity',
+        'corkLabsApiClient',
+        function ($scope, $rootScope, $q, $location, $window, $timeout, router, identity, apiClient) {
 
-            $rootScope.router = corkRouter;
+            $scope.githubSignIn = function () {
+                apiClient.service('authentication').oauth('github').then(function (res) {
+                    $window.location.href = res.url;
+                });
+
+            };
+
+            $scope.signOut = function () {
+                apiClient.service('authentication').signOut().then(function (res) {
+                    identity.clear();
+                });
+
+            };
+
+            $rootScope.router = router;
         }
     ]);
 
