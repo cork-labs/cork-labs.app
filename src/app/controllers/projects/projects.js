@@ -58,6 +58,21 @@
 
             router.addRedirect('/projects/search', '/projects/search/');
 
+            router.addRoute('project.create', {
+                path: '/projects/create',
+                section: 'projects',
+                templateUrl: 'controllers/projects/edit.tpl.html',
+                controllerAs: 'editProject',
+                controller: 'editProjectCtrl',
+                title: 'Project',
+                resolve: {
+                    authorize: authorization.$authorizeRoute
+                },
+                corkAuthorization: {
+                    rules: [authorization.middleware('isAdmin')]
+                }
+            });
+
             router.addRoute('project.view', {
                 path: '/projects/:id',
                 section: 'projects',
@@ -89,14 +104,15 @@
         '$q',
         '$http',
         'corkRouter',
+        'corkAuthorization',
         'corkLabsApiClient',
-        function listProjectsCtrl($scope, $q, $http, router, apiClient) {
+        function listProjectsCtrl($scope, $q, $http, router, authorization, apiClient) {
             var listProjects = this;
 
             var projects = apiClient.service('projects');
 
-            listProjects.add = function () {
-                console.log('!');
+            listProjects.create = function () {
+                router.goTo('project.create');
             };
 
             listProjects.view = function (project) {
@@ -106,9 +122,15 @@
             };
 
             listProjects.loading = true;
+            $scope.projects = [];
             projects.list().then(function (res) {
                 listProjects.loading = false;
                 $scope.projects = res;
+            });
+
+            $scope.userCan = authorization.allowedActions(['project.create']);
+            $scope.$on('corkIdentity.onChange', function () {
+                $scope.userCan.$refresh();
             });
         }
     ]);
@@ -137,27 +159,27 @@
 
             var debouncedSearch = corkThrottling.debounce(function (terms) {
                 if (terms.length || $scope.tags.length) {
-                    $scope.isPristine = false;
-                    $scope.loading = true;
+                    searchProjects.isPristine = false;
+                    searchProjects.loading = true;
                     $scope.projects = [];
                     $timeout(function () {
                         projects.search($scope.terms, $scope.tags).then(function (res) {
-                            $scope.loading = false;
+                            searchProjects.loading = false;
                             $scope.projects = res;
                         });
                     }, 1000);
                 }
             });
 
-            $scope.tags = [];
-            $scope.terms = router.$params.terms || '';
-            $scope.focus = !!$scope.terms || 'auto';
-            $scope.isPristine = true;
-            if ($scope.terms) {
-                $scope.isPristine = false;
+            searchProjects.tags = [];
+            searchProjects.terms = router.$params.terms || '';
+            searchProjects.focus = !!$scope.terms || 'auto';
+            searchProjects.isPristine = true;
+            if (searchProjects.terms) {
+                searchProjects.isPristine = false;
             }
 
-            $scope.tagsOptions = {
+            searchProjects.tagsOptions = {
                 placeholder: 'ex: AngularJS',
                 attr: {
                     label: 'name'
@@ -170,13 +192,12 @@
                 }
             };
 
-            $scope.onSearch = function (terms) {
+            searchProjects.onSearch = function (terms) {
                 console.log('search', terms);
                 debouncedSearch(terms);
             };
 
-            $scope.$watch('tags', function () {
-                console.log('tags', $scope.terms, $scope.tags);
+            searchProjects.$watch('tags', function () {
                 debouncedSearch($scope.terms);
             }, true);
         }
@@ -187,8 +208,9 @@
         '$q',
         '$http',
         'corkRouter',
+        'corkAuthorization',
         'corkLabsApiClient',
-        function viewProjectCtrl($scope, $q, $http, router, apiClient) {
+        function viewProjectCtrl($scope, $q, $http, router, authorization, apiClient) {
             var viewProject = this;
 
             var projects = apiClient.service('projects');
@@ -207,6 +229,11 @@
                 $scope.project = res;
                 $scope.readme = trimReadme($scope.project.readme);
             });
+
+            $scope.userCan = authorization.allowedActions(['project.edit']);
+            $scope.$on('corkIdentity.onChange', function () {
+                $scope.userCan.$refresh();
+            });
         }
     ]);
 
@@ -218,26 +245,35 @@
         'corkPreventNav',
         'corkLabsApiClient',
         function editProjectCtrl($scope, $q, $http, router, preventNav, apiClient) {
-            var viewProject = this;
+            var editProject = this;
 
             var id = router.$params.id;
+            var isNew = !id;
             var projects = apiClient.service('projects');
             var tags = apiClient.service('tags');
 
-            viewProject.cancel = function () {
-                router.goTo('project.view', {
-                    id: id
-                });
+            editProject.isNew = isNew;
+
+            editProject.cancel = function () {
+                if (isNew) {
+                    router.goTo('project.list');
+                } else {
+                    router.goTo('project.view', {
+                        id: id
+                    });
+                }
             };
 
-            viewProject.save = function () {
+            editProject.save = function () {
                 if (!$scope.versionsParseError) {
-                    viewProject.saving = true;
+                    editProject.saving = true;
                     $scope.project.versions = JSON.parse($scope.versionsJSON || []);
-                    projects.update($scope.project).then(function (res) {
+                    var method = isNew ? 'create' : 'update';
+                    projects[method]($scope.project).then(function (res) {
+                        console.log('SAVED', res);
                         $scope['project-edit'].$setPristine();
                         router.goTo('project.view', {
-                            id: id
+                            id: res.id
                         });
                     });
                 }
@@ -246,26 +282,36 @@
             // -- @todo proper version editing
 
             // @todo executing state, block versions ui, update model/handle errors
-            viewProject.buildVersion = function (tag) {
-                projects.build($scope.project, tag);
+            editProject.buildVersion = function (tag) {
+                if ($scope.project.id) {
+                    projects.build($scope.project, tag);
+                }
             };
 
             // @todo executing state, block versions ui, update model/handle errors
-            viewProject.setCurrentVersion = function (tag) {
-                projects.setCurrentVersion($scope.project, tag).then(function () {
-                    // @todo hack, this does not update other properties of currentVersion (such as date)
-                    // either take a response form the server or implement a client side getVersionByTag() in the project model
-                    $scope.project.currentVersion = $scope.project.currentVersion || {};
-                    $scope.project.currentVersion.tag = tag;
-                });
+            editProject.setCurrentVersion = function (tag) {
+                if (!isNew) {
+                    projects.setCurrentVersion($scope.project, tag).then(function () {
+                        // @todo hack, this does not update other properties of currentVersion (such as date)
+                        // either take a response form the server or implement a client side getVersionByTag() in the project model
+                        $scope.project.currentVersion = $scope.project.currentVersion || {};
+                        $scope.project.currentVersion.tag = tag;
+                    });
+                }
             };
 
-            viewProject.loading = true;
-            projects.get(id).then(function (res) {
-                viewProject.loading = false;
-                $scope.project = res;
-                $scope.project.tags = $scope.project.tags || [];
-            });
+            if (isNew) {
+                $scope.project = {
+                    tags: []
+                };
+            } else {
+                editProject.loading = true;
+                projects.get(id).then(function (res) {
+                    editProject.loading = false;
+                    $scope.project = res;
+                    $scope.project.tags = $scope.project.tags || [];
+                });
+            }
 
             $scope.tagsOptions = {
                 attr: {

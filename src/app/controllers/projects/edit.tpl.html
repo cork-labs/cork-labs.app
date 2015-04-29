@@ -6,7 +6,7 @@
 
             <h1 class="form-title has-icon">
                 <i class="icon fa fa-pencil"></i>
-                <span class="text" ng-bind="project.name"></span>
+                <span class="text" ng-bind="project.name || 'Untitled'"></span>
             </h1>
 
             <div class="form-actions">
@@ -25,6 +25,11 @@
     </div>
 
     <section class="form-fields container">
+
+        <div class="form-group name" ng-if="editProject.isNew">
+            <label class="form-label" for="project-edit-id">ID</label>
+            <input class="form-control" type="text" ng-model="project.id" id="project-edit-id" />
+        </div>
 
         <div class="form-group name">
             <label class="form-label" for="project-edit-name">Name</label>

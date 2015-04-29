@@ -31,7 +31,6 @@
                 // if the user is still authorized in the current route
                 authorization.$authorizeRoute().then(function () {
                     // forcefuly reload it to apply changes (not necessary if controllers are aware that permissions can change)
-                    router.$route.reload();
                 }, function (error) {
                     // or broadcast the error change (will cause authorization service to redirect to path defined in the error, the route or config)
                     $rootScope.$broadcast('$routeChangeError', router.$route.current, router.$route.previous, error);
@@ -135,6 +134,9 @@
                     }
                 });
             });
+
+            authorization.addAction('project.create', [authorization.middleware('isAdmin')]);
+            authorization.addAction('project.edit', [authorization.middleware('isAdmin')]);
         }
     ]);
 

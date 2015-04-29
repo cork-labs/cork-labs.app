@@ -3,7 +3,7 @@
     <header class="app-section-header">
         <h1 class="app-section-title">Projects</h1>
         <div class="app-toolbar">
-            <button class="btn" ng-click="listProjects.add()">
+            <button class="btn has-icon" ng-click="listProjects.create()" ng-if="userCan['project.create']">
                 <span class="icon fa fa-plus"></span>
                 <span class="label">add</span>
             </button>
@@ -11,7 +11,15 @@
     </header>
 
     <div class="project-list">
-        <div app-project-list="projects" on-click="listProjects.view"></div>
+
+        <div app-loader="searchProjects.loading"></div>
+
+        <div app-project-list="projects" on-click="listProjects.view" ng-if="!listProjects.loading && projects.length"></div>
+
+        <div ng-if="!listProjects.loading && !projects.length">
+            no results!
+        </div>
+
     </div>
 
 </section>

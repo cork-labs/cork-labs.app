@@ -7,7 +7,7 @@
             <span class="badge bower" app-project-asset-badge app-project="project" app-badge-name="'bower'"></span>
         </p>
         <div class="app-toolbar">
-            <button class="btn" ng-click="viewProject.edit()">
+            <button class="btn" ng-click="viewProject.edit()" ng-if="userCan['project.edit']">
                 <span class="icon fa fa-pencil"></span>
             </button>
         </div>

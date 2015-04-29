@@ -164,7 +164,7 @@
                             methods: {
                                 create: {
                                     verb: 'POST',
-                                    pattern: '/tag',
+                                    pattern: '/project',
                                     args: function (req, project) {
                                         req.data = project;
                                     }

@@ -1,4 +1,4 @@
-<section class="app-section section-search section-project-search" ng-class="{'is-pristine': isPristine, 'is-initialized': !isPristine}">
+<section class="app-section section-search section-project-search" ng-class="{'is-pristine': searchProjects.isPristine, 'is-initialized': !searchProjects.isPristine}">
 
     <header class="app-section-header">
         <div class="container">
@@ -11,13 +11,13 @@
 
                         <div class="form-group terms col-sm-6">
                             <label class="form-label">terms</label>
-                            <div class="search-terms" app-search-terms ng-model="terms" on-search="onSearch(terms)" min-length="2" focus-on="{{focus}}"></div>
+                            <div class="search-terms" app-search-terms ng-model="searchProjects.terms" on-search="searchProjects.onSearch(terms)" min-length="2" focus-on="{{searchProjects.focus}}"></div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group tags">
                                 <label class="form-label">tags</label>
-                                <div cork-input-tags ng-model="tags" cork-options="tagsOptions"></div>
+                                <div cork-input-tags ng-model="searchProjects.tags" cork-options="searchProjects.tagsOptions"></div>
                             </div>
 
                             <div class="action">
@@ -35,14 +35,14 @@
 
     </header>
 
-    <header class="app-section-sub-header tag-filter" ng-class="{'has-tags': tags.length}">
+    <header class="app-section-sub-header tag-filter" ng-class="{'has-tags': searchProjects.tags.length}">
         <div class="container">
             <div class="row">
 
                 <div class="col-sm-2"></div>
 
                 <div class="form-group col-sm-10">
-                    <div cork-input-tags-tags ng-model="tags" cork-options="tagsOptions"></div>
+                    <div cork-input-tags-tags ng-model="searchProjects.tags" cork-options="searchProjects.tagsOptions"></div>
                 </div>
 
             </div>
@@ -51,15 +51,12 @@
 
     <div class="container">
 
-        <div app-loader="!projects || loading"></div>
+        <div app-loader="listProjects.loading"></div>
 
-        <div ng-if="projects">
-            <div ng-if="projects.length">
-                <div app-project-list="projects" on-click="searchProjects.view"></div>
-            </div>
-            <div ng-if="!projects.length">
-                no results!
-            </div>
+        <div app-project-list="projects" on-click="searchProjects.view" ng-if="!searchProjects.loading && projects.length"></div>
+
+        <div ng-if="!searchProjects.loading && !projects.length">
+            no results!
         </div>
 
     </div>
