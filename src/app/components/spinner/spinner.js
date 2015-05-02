@@ -19,9 +19,7 @@
                     function appSpinnerCtrl($scope) {
                         var tags = this;
 
-                        $scope.$watch('enabled', function (val) {
-                            console.log('enabled', val);
-                        });
+                        $scope.$watch('enabled', function (val) {});
                     }
                 ]
             };

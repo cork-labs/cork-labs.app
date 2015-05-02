@@ -26,7 +26,6 @@
         '$http',
         function contentCtrl($q, $http) {
 
-            console.log('contentCtrl');
         }
     ]);
 

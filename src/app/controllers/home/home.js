@@ -27,7 +27,6 @@
         '$http',
         function homeCtrl($q, $http) {
 
-            console.log('homeCtrl');
         }
     ]);
 

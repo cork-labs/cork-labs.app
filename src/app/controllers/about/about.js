@@ -28,7 +28,6 @@
         '$http',
         function aboutCtrl($q, $http) {
 
-            console.log('aboutCtrl');
         }
     ]);
 
