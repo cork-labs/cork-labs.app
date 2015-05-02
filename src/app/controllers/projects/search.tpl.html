@@ -34,7 +34,7 @@
             
             <div class="tag" ng-if="tag && !terms">
 
-                <h1 class="app-section-title">Tag {{tag}}</h1>
+                <h1 class="app-section-title">Projects : {{tag}}</h1>
 
             </div>
         </div>
@@ -57,7 +57,7 @@
 
     <div class="container">
 
-        <div app-loader="listProjects.loading"></div>
+        <div app-spinner="searchProjects.loading"></div>
 
         <div app-project-list="projects" on-click="searchProjects.view" ng-if="!searchProjects.loading && projects.length"></div>
 

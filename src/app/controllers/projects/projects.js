@@ -13,6 +13,7 @@
         'app.services.cork-labs.api',
         'app.services.cork-labs.auth',
         // app
+        'app.components.spinner',
         'app.components.project-list',
         'app.components.project-details',
         'app.components.project-assets',
@@ -66,6 +67,8 @@
             });
 
             router.addRedirect('/projects/search', '/projects/search/');
+
+            router.addRedirect('/', '/projects');
 
             router.addRoute('project.create', {
                 path: '/projects/create',
@@ -169,14 +172,14 @@
             var debouncedSearch = corkThrottling.debounce(function (terms, tags) {
                 if (terms || terms.length || tags && tags.length) {
                     searchProjects.isPristine = false;
-                    searchProjects.loading = true;
+                    searchProjects.loading = 'OLE';
                     $scope.projects = [];
                     $timeout(function () {
                         projects.search($scope.terms, tags).then(function (res) {
                             searchProjects.loading = false;
                             $scope.projects = res;
                         });
-                    }, 1000);
+                    }, 500);
                 }
             });
 

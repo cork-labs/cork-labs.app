@@ -12,7 +12,7 @@
 
     <div class="project-list">
 
-        <div app-loader="searchProjects.loading"></div>
+        <div app-spinner="searchProjects.loading"></div>
 
         <div app-project-list="projects" on-click="listProjects.view" ng-if="!listProjects.loading && projects.length"></div>
 
