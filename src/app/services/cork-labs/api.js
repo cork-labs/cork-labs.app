@@ -257,6 +257,13 @@
                                     args: function (req, id) {
                                         req.set('urlParams.id', id);
                                     }
+                                },
+                                getByName: {
+                                    verb: 'GET',
+                                    pattern: '/tag/-by-name/:name',
+                                    args: function (req, name) {
+                                        req.set('urlParams.name', name);
+                                    }
                                 }
                             }
                         });

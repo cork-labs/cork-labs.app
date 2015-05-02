@@ -2,7 +2,7 @@
     'use strict';
 
     var module = angular.module('app.components.tags', [
-        'hc.marked',
+        'ng.cork.router',
         'app.templates'
     ]);
 
@@ -18,7 +18,7 @@
                 controller: [
                     '$scope',
                     function appTagsCtrl($scope) {
-                        var tagList = this;
+                        var tags = this;
                     }
                 ]
             };
@@ -37,8 +37,10 @@
                 controllerAs: 'tagItem',
                 controller: [
                     '$scope',
-                    function appTagCtrl($scope) {
-                        var tagItem = this;
+                    'corkRouter',
+                    function appTagCtrl($scope, corkRouter) {
+                        var tag = this;
+                        $scope.router = corkRouter;
                     }
                 ]
             };

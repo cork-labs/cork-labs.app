@@ -56,6 +56,15 @@
                 title: 'Search Projects'
             });
 
+            router.addRoute('tag', {
+                path: '/tag/:tag',
+                section: 'projects',
+                templateUrl: 'controllers/projects/search.tpl.html',
+                controllerAs: 'searchProjects',
+                controller: 'searchProjectsCtrl',
+                title: 'Tag'
+            });
+
             router.addRedirect('/projects/search', '/projects/search/');
 
             router.addRoute('project.create', {
@@ -157,13 +166,13 @@
             var projects = apiClient.service('projects');
             var tags = apiClient.service('tags');
 
-            var debouncedSearch = corkThrottling.debounce(function (terms) {
-                if (terms.length || $scope.tags.length) {
+            var debouncedSearch = corkThrottling.debounce(function (terms, tags) {
+                if (terms || terms.length || tags && tags.length) {
                     searchProjects.isPristine = false;
                     searchProjects.loading = true;
                     $scope.projects = [];
                     $timeout(function () {
-                        projects.search($scope.terms, $scope.tags).then(function (res) {
+                        projects.search($scope.terms, tags).then(function (res) {
                             searchProjects.loading = false;
                             $scope.projects = res;
                         });
@@ -172,11 +181,20 @@
             });
 
             searchProjects.tags = [];
-            searchProjects.terms = router.$params.terms || '';
+            $scope.terms = router.$params.terms || '';
+            $scope.tag = router.$params.tag;
             searchProjects.focus = !!$scope.terms || 'auto';
             searchProjects.isPristine = true;
-            if (searchProjects.terms) {
+            if ($scope.terms) {
+                searchProjects.loading = true;
                 searchProjects.isPristine = false;
+            }
+            if ($scope.tag) {
+                searchProjects.loading = true;
+                searchProjects.isPristine = false;
+                tags.getByName($scope.tag).then(function (tag) {
+                    debouncedSearch($scope.terms || '', [tag]);
+                });
             }
 
             searchProjects.tagsOptions = {
@@ -193,12 +211,11 @@
             };
 
             searchProjects.onSearch = function (terms) {
-                console.log('search', terms);
-                debouncedSearch(terms);
+                debouncedSearch(terms, $scope.tags);
             };
 
-            searchProjects.$watch('tags', function () {
-                debouncedSearch($scope.terms);
+            $scope.$watch('tags', function (tags) {
+                debouncedSearch($scope.terms || '', tags);
             }, true);
         }
     ]);
@@ -270,7 +287,6 @@
                     $scope.project.versions = JSON.parse($scope.versionsJSON || []);
                     var method = isNew ? 'create' : 'update';
                     projects[method]($scope.project).then(function (res) {
-                        console.log('SAVED', res);
                         $scope['project-edit'].$setPristine();
                         router.goTo('project.view', {
                             id: res.id
