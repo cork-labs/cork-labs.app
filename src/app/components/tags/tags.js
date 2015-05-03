@@ -7,7 +7,7 @@
     ]);
 
     module.directive('appTags', [
-        function appProject() {
+        function appTag() {
             return {
                 scope: {
                     tags: '=appTags'
@@ -26,7 +26,7 @@
     ]);
 
     module.directive('appTag', [
-        function appProject() {
+        function appTag() {
             return {
                 scope: {
                     tag: '=appTag',

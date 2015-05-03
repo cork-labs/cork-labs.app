@@ -4,16 +4,21 @@
         <h1 class="app-section-title">Search</h1>
     </header>
 
-    <div class="form-group">
-        <label class="form-label">terms</label>
-        <div class="search-terms" app-search-terms ng-model="terms" on-search="onSearch(terms)" search-on-type="true" focus-on="{{focus}}"></div>
-    </div>
+    <div class="row">
 
-    <div app-loader="!projects || loading"></div>
+        <div class="form-group col-xs-6">
+            <label class="form-label">terms</label>
+            <div class="search-terms" app-search-terms ng-model="terms" on-search="onSearch(terms)" focus-on="{{focus}}"></div>
+        </div>
 
-    <div ng-if="projects">
-
-        <div app-project-results="projects" mode="compact" terms="terms"></div>
+        <div class="form-group col-xs-6">
+            <div class="action">
+                <label class="form-label">&nbsp;</label>
+                <button class="btn" ng-click="onSearch()">
+                    <i class="icon fa fa-search"></i>
+                </button>
+            </div>
+        </div>
 
     </div>
 

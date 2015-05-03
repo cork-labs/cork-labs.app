@@ -14,17 +14,17 @@
 
             router.addRoute('content', {
                 path: '/:path*',
-                templateUrl: 'controllers/content/content.tpl.html',
+                templateUrl: 'controllers/content/not-found.tpl.html',
                 controllerAs: 'content',
-                controller: 'contentCtrl'
+                controller: 'notFoundCtrl'
             });
         }
     ]);
 
-    module.controller('contentCtrl', [
+    module.controller('notFoundCtrl', [
         '$q',
         '$http',
-        function contentCtrl($q, $http) {
+        function notFoundCtrl($q, $http) {
 
         }
     ]);

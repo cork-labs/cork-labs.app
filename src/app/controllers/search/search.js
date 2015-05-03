@@ -39,27 +39,20 @@
         'corkLabsApiClient',
         function searchCtrl($rootScope, $scope, $q, $http, router, corkThrottling, corkUiKeys, apiClient) {
 
-            var search = apiClient.service('search');
-
-            var debouncedSearch = corkThrottling.debounce(function (terms) {
+            var search = function (terms) {
                 if (terms.length) {
-                    $scope.loading = true;
-                    $scope.search = [];
-                    search.search($scope.terms).then(function (res) {
-                        $scope.loading = false;
-                        $scope.search = res;
+                    router.goTo('project.search', {
+                        terms: terms
                     });
                 }
-            });
+            };
 
             $scope.terms = router.$params.terms || '';
             $scope.focus = !!$scope.terms || 'auto';
 
-            $scope.onSearch = function (terms) {
-                debouncedSearch(terms);
+            $scope.onSearch = function () {
+                search($scope.terms);
             };
-
-            debouncedSearch($scope.terms);
         }
     ]);
 

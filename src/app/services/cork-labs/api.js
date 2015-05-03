@@ -7,10 +7,10 @@
 
     /**
      * @ngdoc object
-     * @name cork-labs.api.corkLabsApiClientProvider
+     * @name app.services.cork-labs.api.corkLabsApiClientProvider
      *
      * @description
-     * Allows the {@link cork-labs.api.corkLabsApiClient corkLabsApiClient} service to be configured.
+     * Allows the {@link app.services.cork-labs.api.corkLabsApiClient corkLabsApiClient} service to be configured.
      */
     module.provider('corkLabsApiClient', [
         function corkLabsApiClientProvider() {
@@ -25,10 +25,10 @@
             /**
              * @ngdoc function
              * @name configure
-             * @methodOf cork-labs.api.corkLabsApiClientProvider
+             * @methodOf app.services.cork-labs.api.corkLabsApiClientProvider
              *
              * @description
-             * Configures the {@link cork-labs.api.corkLabsApiClient corkLabsApiClient} service.
+             * Configures the {@link app.services.cork-labs.api.corkLabsApiClient corkLabsApiClient} service.
              *
              * @param {Object} config Object with configuration options, extends base configuration.
              * ```
@@ -50,7 +50,7 @@
 
             /**
              * @ngdoc service
-             * @name cork-labs.api.corkLabsApiClient
+             * @name app.services.cork-labs.api.corkLabsApiClient
              *
              * @description
              * Provides a client for the cork-labs.bk api.
