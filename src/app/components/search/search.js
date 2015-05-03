@@ -21,14 +21,18 @@
             return {
                 templateUrl: 'components/search/nav-search.tpl.html',
                 restrict: 'A',
-                scope: {},
+                scope: {
+                    disabled: '='
+                },
                 link: function ($scope, $element, $attrs) {
 
                     $scope.expanded = false;
 
                     $scope.expand = function () {
                         $scope.$evalAsync(function () {
-                            $scope.expanded = true;
+                            if (!$scope.disabled) {
+                                $scope.expanded = true;
+                            }
                         });
                     };
 
@@ -38,21 +42,22 @@
                         });
                     };
 
+                    $scope.onLabelMouseDown = function ($event) {
+                        if (!$scope.disabled && !$scope.expanded) {
+                            $scope.expanded = true;
+                            $rootScope.$evalAsync(function () {
+                                $scope.$broadcast('app-nav-search.focus');
+                            });
+                        }
+                    };
+
                     $scope.onSearch = function (terms) {
+                        console.log('onSearch');
                         $rootScope.$evalAsync(function () {
                             $scope.collapse();
                             corkRouter.goTo('project.search', {
                                 terms: terms
                             });
-                        });
-                    };
-
-                    $scope.onLabelMouseDown = function ($event) {
-                        if (!$scope.expanded) {
-                            $scope.expanded = true;
-                        }
-                        $rootScope.$evalAsync(function () {
-                            $scope.$broadcast('app-nav-search.focus');
                         });
                     };
 
@@ -64,6 +69,12 @@
                     $document[0].addEventListener('mousedown', docMouseDown);
                     $scope.$on('$destroy', function () {
                         $document[0].removeEventListener('mousedown', docMouseDown);
+                    });
+
+                    $scope.$watch('disabled', function (val) {
+                        if (val) {
+                            $scope.expanded = false;
+                        }
                     });
                 }
             };
@@ -78,9 +89,8 @@
             return {
                 templateUrl: 'components/search/terms.tpl.html',
                 restrict: 'A',
-                require: 'ngModel',
                 scope: {
-                    terms: '=ngModel',
+                    terms: '=',
                     focusOn: '@',
                     searchOnType: '@',
                     showHint: '@',

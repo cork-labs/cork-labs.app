@@ -1,5 +1,5 @@
 <div class="app-nav-search collapsed" data-ng-class="{'is-collapsed': !expanded, 'is-expanded': expanded}" cork-ui-stop-propagation cork-ui-prevent-events=['mousedown']>
-    <label class="icon" ng-mousedown="onLabelMouseDown($event)">
+    <label class="label" ng-mousedown="onLabelMouseDown($event)" tabindex="0">
         <span class="fa fa-search"></span>
     </label>
     <div class="search-terms" app-search-terms ng-model="terms" focus-on="app-nav-search.focus"

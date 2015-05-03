@@ -8,7 +8,8 @@
     .nav-item {
         display: inline-block;
         float: left;
-        height: 3em;
+        height: 2.5em;
+        line-height: 2.5em;
         padding: 0 0.25em;
         margin-right: 0.25em;
         font-size: 1.4rem;
@@ -30,10 +31,9 @@
         };
 
         &.is-active {
-            height: 3.3em;
             color: white;
             border-bottom-color: @color-bg-header-bottom;
-            border-bottom-width: 2.8em;
+            border-bottom-width: 2.5em;
         }
     }
 
@@ -50,18 +50,19 @@
 
 @media (max-width: @screen-nano-max) {
 
-    .nav-content {
-        .nav-item {
-            height: 3rem;
-        }
-    }
-
     .nav-content .nav-section {
         display: none;
+    }
+
+    .nav-content .nav-item {
+        height: 2em;
     }
 }
 
 @media (min-width: @screen-xs-min) {
+    .nav-content {
+        margin: 0.9rem 0 0.8rem;
+    }
 }
 
 @media (min-width: @screen-sm-min) {

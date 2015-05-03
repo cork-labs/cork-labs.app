@@ -51,6 +51,7 @@
             router.addRoute('project.search', {
                 path: '/projects/search/:terms*?',
                 section: 'projects',
+                isSearch: true,
                 templateUrl: 'controllers/projects/search.tpl.html',
                 controllerAs: 'searchProjects',
                 controller: 'searchProjectsCtrl',
@@ -175,7 +176,7 @@
                     searchProjects.loading = 'OLE';
                     $scope.projects = [];
                     $timeout(function () {
-                        projects.search($scope.terms, tags).then(function (res) {
+                        projects.search(terms, tags).then(function (res) {
                             searchProjects.loading = false;
                             $scope.projects = res;
                         });
@@ -183,12 +184,14 @@
                 }
             });
 
-            searchProjects.tags = [];
-            $scope.terms = router.$params.terms || '';
+            $scope.tags = [];
+            $scope.terms = {
+                text: router.$params.terms || ''
+            };
             $scope.tag = router.$params.tag;
-            searchProjects.focus = !!$scope.terms || 'auto';
+            searchProjects.focus = !!$scope.terms.text || 'auto';
             searchProjects.isPristine = true;
-            if ($scope.terms) {
+            if ($scope.terms.text) {
                 searchProjects.loading = true;
                 searchProjects.isPristine = false;
             }
@@ -196,7 +199,7 @@
                 searchProjects.loading = true;
                 searchProjects.isPristine = false;
                 tags.getByName($scope.tag).then(function (tag) {
-                    debouncedSearch($scope.terms || '', [tag]);
+                    debouncedSearch($scope.terms.text || '', [tag]);
                 });
             }
 
@@ -217,8 +220,12 @@
                 debouncedSearch(terms, $scope.tags);
             };
 
+            searchProjects.onSubmit = function () {
+                debouncedSearch($scope.terms.text, $scope.tags);
+            };
+
             $scope.$watch('tags', function (tags) {
-                debouncedSearch($scope.terms || '', tags);
+                debouncedSearch($scope.terms.text || '', tags);
             }, true);
         }
     ]);

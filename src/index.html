@@ -43,7 +43,7 @@
                     <div class="nav-content">
                         <a class="nav-item nav-section" href="/projects" ng-class="{'is-active': router.$$route.section === 'projects'}">projects</a>
                         <a class="nav-item nav-section" href="/about" ng-class="{'is-active': router.$$route.section === 'about'}">about</a>
-                        <div class="nav-item search" app-nav-search min-length="2"></div>
+                        <div class="nav-item search" app-nav-search disabled="router.$$route.isSearch" min-length="2"></div>
                     </div>
                     <hr>
                 </div>
